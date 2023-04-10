@@ -27,7 +27,7 @@ class Product {
     return _isFavorite.value;
   }
 
-  ValueNotifier<bool> get isFavoritrListenable {
+  ValueNotifier<bool> get isFavoriteListenable {
     return _isFavorite;
   }
 

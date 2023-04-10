@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/ui/products/all_product_grid.dart';
 import 'package:provider/provider.dart';
 
 import 'package:panow/ui/control_screen.dart';
@@ -20,13 +21,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   void initState() {
     super.initState();
     _fetchProducts = context.read<ProductsManager>().fetchProducts();
+    var listProducts =
+        context.read<ProductsManager>().getListProductsByType('Headphone');
+    // print(listProducts);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("panow"),
+        title: const Text("Sản phẩm"),
         actions: <Widget>[
           buildProductFilterMenu(),
           buildShoppingCartIcon(),
@@ -34,14 +38,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       ),
       drawer: const AppDrawer(),
       body: FutureBuilder(
+          // print(listProducts);
           future: _fetchProducts,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return ValueListenableBuilder<bool>(
-                  valueListenable: _showOnlyFavorites,
-                  builder: (context, onlyFavorites, child) {
-                    return ProductsGrid(onlyFavorites);
-                  });
+              // return ValueListenableBuilder<bool>(
+              //     valueListenable: _showOnlyFavorites,
+              //     builder: (context, onlyFavorites, child) {
+              //       return ProductsGrid(onlyFavorites);
+              //     });
+              return const AllProductGrid();
             }
             return const Center(
               child: CircularProgressIndicator(),

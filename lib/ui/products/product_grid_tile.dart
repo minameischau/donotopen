@@ -38,7 +38,7 @@ class ProductGridTile extends StatelessWidget {
     return GridTileBar(
       backgroundColor: Colors.black87,
       leading: ValueListenableBuilder<bool>(
-        valueListenable: product.isFavoritrListenable,
+        valueListenable: product.isFavoriteListenable,
         builder: (ctx, isFavorite, child) {
           return IconButton(
             icon: Icon(

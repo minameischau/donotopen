@@ -13,9 +13,10 @@ class UserProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final productsManager = ProductsManager();
+    // print()
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Products"),
+        title: const Text("Sản phẩm"),
         actions: <Widget>[
           buildAddButton(context),
         ],

@@ -5,7 +5,7 @@ import 'package:panow/models/product.dart';
 import 'package:panow/services/product_service.dart';
 
 class ProductsManager with ChangeNotifier {
-  List<Product> _items = [
+  // List<Product> _items = [
     // Product(
     //   id: 'p1',
     //   title: 'Red Shirt',
@@ -40,24 +40,25 @@ class ProductsManager with ChangeNotifier {
     //       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     //   isFavorite: true,
     // ),
-  ];
+  // ];
+  List<Product> _items = [];
 
-  final ProductsService _productsService;
+  final ProductsService _itemsService;
 
   ProductsManager([AuthToken? authToken])
-      : _productsService = ProductsService(authToken);
+      : _itemsService = ProductsService(authToken);
 
   set authToken(AuthToken? authToken) {
-    _productsService.authToken = authToken;
+    _itemsService.authToken = authToken;
   }
 
   Future<void> fetchProducts([bool filterByUser = false]) async {
-    _items = await _productsService.fetchProducts(filterByUser);
+    _items = await _itemsService.fetchProducts(filterByUser);
     notifyListeners();
   }
 
   Future<void> addProduct(Product product) async {
-    final newProduct = await _productsService.addProduct(product);
+    final newProduct = await _itemsService.addProduct(product);
     if (newProduct != null) {
       _items.add(newProduct);
       notifyListeners();
@@ -67,7 +68,7 @@ class ProductsManager with ChangeNotifier {
   Future<void> updateProduct(Product product) async {
     final index = _items.indexWhere((item) => item.id == product.id);
     if (index >= 0) {
-      if (await _productsService.updateProduct(product)) {
+      if (await _itemsService.updateProduct(product)) {
         _items[index] = product;
         notifyListeners();
       }
@@ -80,7 +81,7 @@ class ProductsManager with ChangeNotifier {
     _items.removeAt(index);
     notifyListeners();
 
-    if (!await _productsService.deleteProduct(id)) {
+    if (!await _itemsService.deleteProduct(id)) {
       _items.insert(index, existingProduct);
       notifyListeners();
     }
@@ -90,7 +91,7 @@ class ProductsManager with ChangeNotifier {
     final savedStatus = product.isFavorite;
     product.isFavorite = !savedStatus;
 
-    if (!await _productsService.saveFavoriteStatus(product)) {
+    if (!await _itemsService.saveFavoriteStatus(product)) {
       product.isFavorite = savedStatus;
     }
   }
@@ -107,10 +108,24 @@ class ProductsManager with ChangeNotifier {
     return _items.where((item) => item.isFavorite).toList();
   }
 
-  List<Product> _products = [];
+  // List<Product> _items = [];
 
-  List<Product> getListProducts(String name) {
-    return _products.where((product) => product.type == name).toList();
+  bool isExistInList(List<Product> list, Product product) {
+    // int num = list.length;
+    for (var e in list) {
+      if (e.id == product.id) {
+        return true;
+      }
+    }
+    return false;
+  } 
+
+  List<Product> getListProducts() {
+    return _items.toList();
+  }
+
+  List<Product> getListProductsByType(String name) {
+    return _items.where((product) => product.type == name).toList();
   }
 
   Product? findById(String id) {

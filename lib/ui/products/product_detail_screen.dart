@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:panow/models/product.dart';
 import 'package:panow/ui/control_screen.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   static const routeName = '/product-detail';
@@ -28,6 +29,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     setState(() {
       if (_n > 1) _n--;
     });
+  }
+
+  String formatCurrency(double amount) {
+    final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'VNĐ');
+    return formatter.format(amount);
   }
 
   @override
@@ -145,7 +151,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             fontWeight: FontWeight.w700,
                           )),
                       Text(
-                        widget.product.price.toString() + "00 VNĐ",
+                        formatCurrency(widget.product.price),
+                        // widget.product.price.toString() + "00 VNĐ",
                         style: const TextStyle(
                           fontSize: 20,
                           color: red,
