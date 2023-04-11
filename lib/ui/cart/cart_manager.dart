@@ -14,7 +14,12 @@ class CartManager with ChangeNotifier {
   };
 
   int get productCount {
-    return _items.length;
+    // return _items.length;
+    var cnt = 0;
+    _items.forEach((key, cartItem) {
+      cnt = cnt +1 ;
+    });
+    return cnt;
   }
 
   List<CartItem> get products {
@@ -33,13 +38,14 @@ class CartManager with ChangeNotifier {
     return total;
   }
 
-  void addItem(Product product) {
+  void addItem(Product product, n) {
+    int num = n;
     if (_items.containsKey(product.id)) {
       // change quantity...
       _items.update(
         product.id!,
         (existingCartItem) => existingCartItem.copyWith(
-          quantity: existingCartItem.quantity + 1,
+          quantity: existingCartItem.quantity + num,
         ),
       );
     } else {
@@ -48,7 +54,8 @@ class CartManager with ChangeNotifier {
         () => CartItem(
             id: 'c${DateTime.now().toIso8601String()}',
             title: product.title,
-            quantity: 1,
+            quantity: num,
+            imageUrl: product.imageUrl,
             price: product.price),
       );
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../ui/control_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../../ui/widgets/big_text.dart';
 import '../../ui/widgets/icon_and_text.dart';
@@ -10,6 +11,10 @@ import '../../models/product.dart';
 class HomeProductGridTile extends StatelessWidget {
   const HomeProductGridTile(this.product, {super.key});
   final Product product;
+  String formatCurrency(double amount) {
+    final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'VNĐ');
+    return formatter.format(amount);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +76,8 @@ class HomeProductGridTile extends StatelessWidget {
                       height: 6,
                     ),
                     SmallText(
-                      text: product.type,
-                      size: 13,
+                      text: formatCurrency(product.price),
+                      size: 16,
                     ),
                     SizedBox(
                       height: 6,

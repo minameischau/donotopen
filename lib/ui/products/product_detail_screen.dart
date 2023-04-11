@@ -80,6 +80,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
     return Scaffold(
       backgroundColor: white,
+      //Img
       body: Stack(
         children: [
           //Image product
@@ -269,6 +270,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         ],
       ),
+      
+      //Them gio hang
       bottomNavigationBar: Container(
         height: 100,
         padding:
@@ -288,9 +291,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        // minus();
+                        minus();
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.remove,
                         color: black,
                         size: 20,
@@ -298,10 +301,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    padding: EdgeInsets.only(left: 20, right: 20),
                     child: Text(
                       '$_n',
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 17),
                     ),
                   ),
@@ -309,14 +312,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     width: 35,
                     height: 36,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 245, 244, 244),
+                      color: Color.fromARGB(255, 245, 244, 244),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextButton(
                       onPressed: () {
                         add();
                       },
-                      child: const Icon(Icons.add, color: black, size: 18),
+                      child: Icon(Icons.add, color: black, size: 18),
                     ),
                   )
                 ],
@@ -324,7 +327,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
             Container(
               padding:
-                  const EdgeInsets.only(top: 0, bottom: 0, left: 30, right: 30),
+                  EdgeInsets.only(top: 0, bottom: 0, left: 30, right: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: deepOrange),
               child: Row(
@@ -332,16 +335,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   TextButton(
                     onPressed: () {
                       final cart = context.read<CartManager>();
-                      // cart.addItem(widget.product, _n);
-                      cart.addItem(widget.product);
+                      cart.addItem(widget.product, _n);
+                      // cart.addItem(widget.product);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CartScreen(),
+                          builder: (context) => CartScreen(),
                         ),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       'THÊM VÀO GIỎ HÀNG',
                       style: TextStyle(
                         fontSize: 14,

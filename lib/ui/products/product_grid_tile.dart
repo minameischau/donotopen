@@ -61,7 +61,7 @@ class ProductGridTile extends StatelessWidget {
         ),
         onPressed: () {
           final cart = context.read<CartManager>();
-          cart.addItem(product);
+          cart.addItem(product, 1);
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(

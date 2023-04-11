@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
           ),
-          nextScreen: const OnBoardScreen(),
+          nextScreen: const HomeScreen(),
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: white,
         ),

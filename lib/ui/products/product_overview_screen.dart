@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:panow/ui/products/all_product_agrid.dart';
 import 'package:panow/ui/products/all_product_grid.dart';
+// import 'package:panow/ui/products/all_product_grid.dart';
 import 'package:provider/provider.dart';
 
 import 'package:panow/ui/control_screen.dart';
@@ -42,12 +44,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           future: _fetchProducts,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              // return ValueListenableBuilder<bool>(
-              //     valueListenable: _showOnlyFavorites,
-              //     builder: (context, onlyFavorites, child) {
-              //       return ProductsGrid(onlyFavorites);
-              //     });
-              return const AllProductGrid();
+              return ValueListenableBuilder<bool>(
+                  valueListenable: _showOnlyFavorites,
+                  builder: (context, onlyFavorites, child) {
+                    if(_showOnlyFavorites.value) {
+                      return AllProductAGrid(onlyFavorites);
+                    } else {
+                      return AllProductGrid();
+                    } 
+                  });
+              // return const AllProductGrid();
             }
             return const Center(
               child: CircularProgressIndicator(),

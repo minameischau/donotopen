@@ -795,8 +795,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget buildShoppingCartIcon() {
     return Consumer<CartManager>(
       builder: (ctx, cartManager, child) {
+        print(CartManager().productCount);
         return TopRightBadge(
+          
           data: CartManager().productCount,
+          // data: 1,
           child: IconButton(
             icon: const Icon(
               Icons.shopping_cart,
