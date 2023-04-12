@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/ui/products/favorite_products.dart';
 import 'package:provider/provider.dart';
 
 import 'package:panow/ui/control_screen.dart';
@@ -128,8 +129,10 @@ class _AuthProfileState extends State<AuthProfile> {
       child: email == 'admin@gmail.com' || email == 'panow@gmail.com'
           ? GestureDetector(
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ProductList()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserProductsScreen()));
               },
               child: Row(
                 children: [
@@ -148,8 +151,10 @@ class _AuthProfileState extends State<AuthProfile> {
             )
           : GestureDetector(
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ProductList()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FavoriteProductsScreen()));
               },
               child: Row(
                 children: [
