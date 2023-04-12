@@ -5,12 +5,13 @@ class OnBoards {
 
 List<OnBoards> onBoardData = [
   OnBoards(
-      text: "Sắm bàn phím cơ. Giá rẻ bất ngờ \nBảo đảm hàng chính hãng.",
+      text:
+          "Buy keyboard. It's all surprisingly cheap. \nGuaranteed genuine goods.",
       image: "assets/keyboard/keyboard.png"),
   OnBoards(
-      text: 'Chuột gaming.\nGiá ưu đãi bất ngờ.',
+      text: 'Gaming mouse.\nUnexpected discount.',
       image: "assets/mouse/mouse.png"),
   OnBoards(
-      text: "Tận hưởng thế giới của riêng bạn. \nÂm thanh rõ ràng và trong trẻo.",
+      text: "Enjoy your own world. \nThe sound is clear and clear.",
       image: "assets/headphone/headphone.png"),
 ];

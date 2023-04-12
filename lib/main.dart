@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:panow/ui/home/home.dart';
+// import 'package:panow/ui/home/home.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -44,7 +44,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'PanOw Tech',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.deepOrange),
+        theme: ThemeData(
+          primarySwatch: Colors.deepOrange,
+          fontFamily: 'SFCompactRounded',
+          primaryColor: primaryCorlor,
+          scaffoldBackgroundColor: grey,
+        ),
         home: AnimatedSplashScreen(
           duration: 1000,
           splashIconSize: 500,
@@ -57,7 +62,7 @@ class MyApp extends StatelessWidget {
               ),
             ],
           ),
-          nextScreen: const HomeScreen(),
+          nextScreen: const OnBoardScreen(),
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: white,
         ),

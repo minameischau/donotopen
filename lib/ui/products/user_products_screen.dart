@@ -16,12 +16,18 @@ class UserProductsScreen extends StatelessWidget {
     // print()
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sản phẩm"),
+        title: const Text(
+          "Products",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: <Widget>[
           buildAddButton(context),
         ],
       ),
-      drawer: const AppDrawer(),
+      // drawer: const AppDrawer(),
       body: FutureBuilder(
         future: _refreshProducts(context),
         builder: (ctx, snapshot) {

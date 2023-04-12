@@ -1,8 +1,7 @@
-// import 'package:eatcleanproject/ui/auth/auth_info.dart';
 import 'package:flutter/material.dart';
 import 'package:bottom_bar/bottom_bar.dart';
 
-import 'control_screen.dart';
+import 'package:panow/ui/control_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -16,23 +15,23 @@ class _HomeScreen extends State<HomeScreen> {
   final _pageController = PageController();
   List pages = [];
 
-  @override
-  void onTapped(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-  }
+  // @override
+  // void onTapped(int index) {
+  //   setState(() {
+  //     _currentPage = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: const [
+        children: [
           HomePageScreen(),
           ProductsOverviewScreen(),
           CartScreen(),
-          AuthProfile()
+          AuthProfile(),
         ],
         onPageChanged: (index) {
           setState(() => _currentPage = index);

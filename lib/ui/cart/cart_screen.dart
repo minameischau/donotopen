@@ -17,6 +17,7 @@ class _CartScreenState extends State<CartScreen> {
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'VNĐ');
     return formatter.format(amount);
   }
+
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartManager>();
@@ -31,13 +32,12 @@ class _CartScreenState extends State<CartScreen> {
         builder: (context, authManager, child) {
           return Material(
             child: authManager.isAuth
-              ? buildPageCart(cart, total, authManager.authToken!.email)
-              : LoginScreen(),
+                ? buildPageCart(cart, total, authManager.authToken!.email)
+                : AuthScreen(),
           );
         },
       ),
     );
-
 
 //---------------Old Version------------------
     // return Scaffold(
@@ -54,8 +54,9 @@ class _CartScreenState extends State<CartScreen> {
     //     ],
     //   ),
     // );
-//---------------Old Version End------------------  
+//---------------Old Version End------------------
   }
+
   Widget buildPageCart(cart, total, email) {
     return Consumer<AuthManager>(
       builder: (context, authManager, child) {
@@ -63,7 +64,9 @@ class _CartScreenState extends State<CartScreen> {
           resizeToAvoidBottomInset: false,
           body: Column(children: [
             // AppBarCart(),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(height: 1000, child: buildCartDetails(cart)),
@@ -97,8 +100,9 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget buildCartDetails(CartManager cart) {
     return ListView(
-        children: cart.productEntries.map((e) => 
-        CardItemCard(productId: e.key, cardItem: e.value)).toList());
+        children: cart.productEntries
+            .map((e) => CardItemCard(productId: e.key, cardItem: e.value))
+            .toList());
   }
 
   // Widget buildCartSummaryOld(CartManager cart, BuildContext context) {
@@ -207,8 +211,7 @@ class _CartScreenState extends State<CartScreen> {
                                 builder: (context) => OrderScreen()
                                 // OrderInfo(
                                 //     cart.products, cart.totalAmount, email  )
-                                )
-                                );
+                                ));
 
                         // context
                         //     .read<OrdersManager>()
