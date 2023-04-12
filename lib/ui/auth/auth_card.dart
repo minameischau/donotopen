@@ -143,7 +143,7 @@ class _AuthCardState extends State<AuthCard> {
             ),
             TextSpan(
               text:
-                  '${_authMode == AuthMode.login ? 'Create here' : 'Sign in'} ',
+                  '${_authMode == AuthMode.login ? 'Create here' : 'Log in'} ',
               style: TextStyle(color: blue),
             ),
           ],
@@ -169,7 +169,7 @@ class _AuthCardState extends State<AuthCard> {
           color: Theme.of(context).primaryTextTheme.titleLarge?.color,
         ),
       ),
-      child: Text(_authMode == AuthMode.login ? 'Sign in' : 'Sign up'),
+      child: Text(_authMode == AuthMode.login ? 'Log in' : 'Sign up'),
     );
   }
 

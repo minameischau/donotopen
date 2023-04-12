@@ -40,7 +40,7 @@ class _AuthProfileState extends State<AuthProfile> {
           appBar: AppBar(
               title: const Center(
             child: Text(
-              'Thông tin tài khoản',
+              'My Profile',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -116,6 +116,8 @@ class _AuthProfileState extends State<AuthProfile> {
               _buildSetting(),
               const SizedBox(height: 5),
               _buildIntroduction(),
+              const SizedBox(height: 5),
+              _buildHelp(),
             ],
           ),
         ),
@@ -138,7 +140,7 @@ class _AuthProfileState extends State<AuthProfile> {
                 children: [
                   const Icon(Icons.edit, size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
-                  const Text('Quản lý sản phẩm',
+                  const Text('Product management',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const Spacer(),
@@ -161,7 +163,7 @@ class _AuthProfileState extends State<AuthProfile> {
                   const Icon(Icons.favorite_border_rounded,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
-                  const Text('Sản phẩm yêu thích',
+                  const Text('Favorite product',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const Spacer(),
@@ -189,7 +191,7 @@ class _AuthProfileState extends State<AuthProfile> {
                   const Icon(Icons.shopping_bag_outlined,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
-                  const Text('Quản lý đơn hàng',
+                  const Text('Order management',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const Spacer(),
@@ -210,7 +212,7 @@ class _AuthProfileState extends State<AuthProfile> {
                   const Icon(Icons.shopping_bag_outlined,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
-                  const Text('Đơn hàng của bạn',
+                  const Text('Your order',
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   const Spacer(),
@@ -236,7 +238,7 @@ class _AuthProfileState extends State<AuthProfile> {
           children: [
             const Icon(Icons.settings, size: 20, color: primaryCorlor),
             const SizedBox(width: 10),
-            const Text('Cài đặt',
+            const Text('Setting',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const Spacer(),
             Container(
@@ -262,7 +264,33 @@ class _AuthProfileState extends State<AuthProfile> {
             const Icon(Icons.info_outline_rounded,
                 size: 20, color: primaryCorlor),
             const SizedBox(width: 10),
-            const Text('Giới thiệu',
+            const Text('About Panow Tech',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const Spacer(),
+            Container(
+                padding: const EdgeInsets.all(3),
+                child: const Icon(Icons.keyboard_arrow_right_rounded,
+                    size: 20, color: textCorlor))
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHelp() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: GestureDetector(
+        onTap: () {
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => ProductList()));
+        },
+        child: Row(
+          children: [
+            const Icon(Icons.help_outline_rounded,
+                size: 20, color: primaryCorlor),
+            const SizedBox(width: 10),
+            const Text('Help',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const Spacer(),
             Container(
@@ -300,7 +328,7 @@ class _AuthProfileState extends State<AuthProfile> {
         children: const [
           Icon(Icons.logout), // add an icon
           SizedBox(width: 10), // add spacing between icon and text
-          Text('Đăng xuất'), // add text
+          Text('Log out'), // add text
         ],
       ),
     );
