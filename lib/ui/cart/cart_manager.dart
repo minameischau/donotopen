@@ -14,12 +14,12 @@ class CartManager with ChangeNotifier {
   };
 
   int get productCount {
-    // return _items.length;
-    var cnt = 0;
-    _items.forEach((key, cartItem) {
-      cnt = cnt +1 ;
-    });
-    return cnt;
+    return _items.length;
+    // var cnt = 0;
+    // _items.forEach((key, cartItem) {
+    //   cnt = cnt +1 ;
+    // });
+    // return cnt;
   }
 
   List<CartItem> get products {

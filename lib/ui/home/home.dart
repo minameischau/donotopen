@@ -30,14 +30,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int selectedPage = 0;
   // final _showOnlyFavorites = ValueNotifier<bool>(false);
   late Future<void> _fetchProducts;
-  late List<Product> _p;
+  // late List<Product> _p;
   
 
   @override
   void initState() {
     super.initState();
     _fetchProducts = context.read<ProductsManager>().fetchProducts();
-    _p = context.read<ProductsManager>().getListProductsByType('Headphone');
+    // _p = context.read<ProductsManager>().getListProductsByType('Headphone');
     // print(_p);
   }
 
@@ -795,10 +795,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget buildShoppingCartIcon() {
     return Consumer<CartManager>(
       builder: (ctx, cartManager, child) {
-        print(CartManager().productCount);
+        final cart = context.watch<CartManager>();
+        final total = cart.productCount;
+        // print(CartManager().productCount);
         return TopRightBadge(
           
-          data: CartManager().productCount,
+          data: total,
           // data: 1,
           child: IconButton(
             icon: const Icon(

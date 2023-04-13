@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/ui/orders/order_information.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:panow/ui/control_screen.dart';
@@ -17,6 +18,7 @@ class _CartScreenState extends State<CartScreen> {
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'VNĐ');
     return formatter.format(amount);
   }
+
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartManager>();
@@ -31,13 +33,12 @@ class _CartScreenState extends State<CartScreen> {
         builder: (context, authManager, child) {
           return Material(
             child: authManager.isAuth
-              ? buildPageCart(cart, total, authManager.authToken!.email)
-              : LoginScreen(),
+                ? buildPageCart(cart, total, authManager.authToken!.email)
+                : LoginScreen(),
           );
         },
       ),
     );
-
 
 //---------------Old Version------------------
     // return Scaffold(
@@ -54,8 +55,9 @@ class _CartScreenState extends State<CartScreen> {
     //     ],
     //   ),
     // );
-//---------------Old Version End------------------  
+//---------------Old Version End------------------
   }
+
   Widget buildPageCart(cart, total, email) {
     return Consumer<AuthManager>(
       builder: (context, authManager, child) {
@@ -63,10 +65,15 @@ class _CartScreenState extends State<CartScreen> {
           resizeToAvoidBottomInset: false,
           body: Column(children: [
             // AppBarCart(),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             Expanded(
               child: SingleChildScrollView(
-                child: Container(height: 1000, child: buildCartDetails(cart)),
+                child: Container(
+                  height: 1000, 
+                  child: buildCartDetails(cart)
+                ),
               ),
             ),
             Container(
@@ -87,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                   ), //BoxShadow
                 ],
               ),
-              child: buildCartSummary(cart, total, email),
+              child: buildCartSummary(cart, total, email, context),
             )
           ]),
         );
@@ -97,8 +104,9 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget buildCartDetails(CartManager cart) {
     return ListView(
-        children: cart.productEntries.map((e) => 
-        CardItemCard(productId: e.key, cardItem: e.value)).toList());
+        children: cart.productEntries
+            .map((e) => CardItemCard(productId: e.key, cardItem: e.value))
+            .toList());
   }
 
   // Widget buildCartSummaryOld(CartManager cart, BuildContext context) {
@@ -144,7 +152,7 @@ class _CartScreenState extends State<CartScreen> {
   //   );
   // }
 
-  Widget buildCartSummary(CartManager cart, total, email) {
+  Widget buildCartSummary(CartManager cart, total, email, BuildContext context) {
     return Column(
       children: [
         Container(
@@ -204,15 +212,14 @@ class _CartScreenState extends State<CartScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => OrderScreen()
+                                builder: (context) => OrderInformation(cart.products, cart.totalAmount, email)
                                 // OrderInfo(
                                 //     cart.products, cart.totalAmount, email  )
-                                )
-                                );
+                                ));
 
                         // context
                         //     .read<OrdersManager>()
-                        //     .addOrder(cart.products, cart.totalAmount);
+                        //     .addOrder(cart.products);
                         // cart.clear();
                         // Navigator.push(
                         //     context,

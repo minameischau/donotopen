@@ -35,6 +35,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         title: const Text("Sản phẩm"),
         actions: <Widget>[
           buildProductFilterMenu(),
+          buildSearchIcon(),
           buildShoppingCartIcon(),
         ],
       ),
@@ -65,8 +66,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget buildShoppingCartIcon() {
     return Consumer<CartManager>(
       builder: (ctx, cartManager, child) {
+        final cart = context.watch<CartManager>();
+        final total = cart.productCount;
         return TopRightBadge(
-          data: CartManager().productCount,
+          data: total,
           child: IconButton(
             icon: const Icon(
               Icons.shopping_cart,
@@ -75,6 +78,17 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               Navigator.of(context).pushNamed(CartScreen.routeName);
             },
           ),
+        );
+      },
+    );
+  }
+  
+  Widget buildSearchIcon() {
+    return IconButton(
+      icon: const Icon(Icons.search_rounded),
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+          SearchScreen.routeName,
         );
       },
     );
