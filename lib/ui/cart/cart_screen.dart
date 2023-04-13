@@ -23,21 +23,51 @@ class _CartScreenState extends State<CartScreen> {
     final cart = context.watch<CartManager>();
     final total = cart.totalAmount;
     ChangeNotifierProvider(create: (context) => AuthManager());
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Your cart'),
-      ),
-      drawer: const AppDrawer(),
-      body: Consumer<AuthManager>(
-        builder: (context, authManager, child) {
-          return Material(
+
+    return Consumer<AuthManager>(
+      builder: (context, authManager, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Center(
+              child: Text(
+                authManager.isAuth ? 'Your Cart' : 'You Have To Log In',
+                style: const TextStyle(
+                  fontFamily: 'SFCompactRounded',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          body: Material(
             child: authManager.isAuth
                 ? buildPageCart(cart, total, authManager.authToken!.email)
                 : AuthScreen(),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
+
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text(
+    //       'Your cart',
+    //       style: TextStyle(
+    //         fontSize: 18,
+    //         fontWeight: FontWeight.bold,
+    //       ),
+    //     ),
+    //   ),
+    //   body: Consumer<AuthManager>(
+    //     builder: (context, authManager, child) {
+    //       return Material(
+    //         child: authManager.isAuth
+    //             ? buildPageCart(cart, total, authManager.authToken!.email)
+    //             : AuthScreen(),
+    //       );
+    //     },
+    //   ),
+    // );
 
 //---------------Old Version------------------
     // return Scaffold(
@@ -74,6 +104,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Container(
               height: 150,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -83,7 +114,7 @@ class _CartScreenState extends State<CartScreen> {
                     spreadRadius: 5.0,
                   ), //BoxShadow
                   BoxShadow(
-                    color: Colors.white,
+                    color: white,
                     offset: Offset(0.0, 5.0),
                     blurRadius: 0.0,
                     spreadRadius: 0.0,
@@ -151,86 +182,86 @@ class _CartScreenState extends State<CartScreen> {
   Widget buildCartSummary(CartManager cart, total, email) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.only(top: 25, bottom: 20),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SmallText(
-                      text: "Voucher",
-                      size: 15,
-                    ),
-                    SmallText(
-                      text: "Áp dụng mã giảm giá",
-                      size: 15,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconAndText(
+              // icon: Icons.local_play_outlined,
+              icon: Icons.confirmation_num_rounded,
+              iconColor: primaryCorlor,
+              size: 20,
+              text: "Platform voucher",
+            ),
+            SmallText(
+              text: "Select or enter code",
+              size: 16,
+            ),
+          ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Tổng cộng',
-                    style: TextStyle(
-                        fontSize: 17,
-                        color: Color.fromARGB(255, 135, 135, 135),
-                        fontWeight: FontWeight.w400),
+        const Divider(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                const Text(
+                  'Total payment',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: greyText,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    formatCurrency(total),
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  )
-                ],
-              ),
-              TextButton(
-                child: Text(
-                  'Đặt hàng',
-                  style: TextStyle(fontSize: 18),
                 ),
-                onPressed: cart.totalAmount <= 0
-                    ? null
-                    : () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OrderScreen()
-                                // OrderInfo(
-                                //     cart.products, cart.totalAmount, email  )
-                                ));
-
-                        // context
-                        //     .read<OrdersManager>()
-                        //     .addOrder(cart.products, cart.totalAmount);
-                        // cart.clear();
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => OrderScreen()));
-                      },
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 50, right: 50),
-                    foregroundColor: Colors.white,
-                    elevation: 20,
-                    backgroundColor: primaryCorlor),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  formatCurrency(total),
+                  style: TextStyle(
+                    fontFamily: 'SFCompactRounded',
+                    fontSize: 18,
+                    color: primaryCorlor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              ],
+            ),
+            TextButton(
+              child: Text(
+                'Check out',
+                style: TextStyle(
+                  fontFamily: 'SFCompactRounded',
+                  fontSize: 18,
+                  // fontWeight: FontWeight.bold,
+                ),
               ),
-            ],
-          ),
+              onPressed: cart.totalAmount <= 0
+                  ? null
+                  : () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => OrderScreen()
+                              // OrderInfo(
+                              //     cart.products, cart.totalAmount, email  )
+                              ));
+
+                      // context
+                      //     .read<OrdersManager>()
+                      //     .addOrder(cart.products, cart.totalAmount);
+                      // cart.clear();
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => OrderScreen()));
+                    },
+              style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  foregroundColor: white,
+                  elevation: 10,
+                  backgroundColor: primaryCorlor),
+            ),
+          ],
         )
       ],
     );

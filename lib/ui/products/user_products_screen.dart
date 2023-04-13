@@ -65,7 +65,7 @@ class UserProductsScreen extends StatelessWidget {
 
   Widget buildAddButton(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.add),
+      icon: const Icon(Icons.add_rounded),
       onPressed: () {
         Navigator.of(context).pushNamed(
           EditProductScreen.routeName,

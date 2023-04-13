@@ -53,7 +53,7 @@ class _AllProductGridState extends State<AllProductGrid> {
                     IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.chevron_right,
+                        Icons.chevron_right_rounded,
                         color: primaryCorlor,
                       ),
                     )

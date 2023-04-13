@@ -32,13 +32,21 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sản phẩm"),
+        title: const Center(
+          child: Text(
+            "Products",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         actions: <Widget>[
           buildProductFilterMenu(),
           buildShoppingCartIcon(),
         ],
       ),
-      drawer: const AppDrawer(),
+      // drawer: const AppDrawer(),
       body: FutureBuilder(
           // print(listProducts);
           future: _fetchProducts,
@@ -47,11 +55,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               return ValueListenableBuilder<bool>(
                   valueListenable: _showOnlyFavorites,
                   builder: (context, onlyFavorites, child) {
-                    if(_showOnlyFavorites.value) {
+                    if (_showOnlyFavorites.value) {
                       return AllProductAGrid(onlyFavorites);
                     } else {
                       return AllProductGrid();
-                    } 
+                    }
                   });
               // return const AllProductGrid();
             }
@@ -69,7 +77,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           data: CartManager().productCount,
           child: IconButton(
             icon: const Icon(
-              Icons.shopping_cart,
+              Icons.shopping_cart_rounded,
             ),
             onPressed: () {
               Navigator.of(context).pushNamed(CartScreen.routeName);
@@ -90,7 +98,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         }
       },
       icon: const Icon(
-        Icons.more_vert,
+        Icons.more_vert_rounded,
       ),
       itemBuilder: (ctx) => [
         const PopupMenuItem(

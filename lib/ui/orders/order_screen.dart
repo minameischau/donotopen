@@ -34,7 +34,7 @@ class _OrderScreenState extends State<OrderScreen> {
           appBar: AppBar(
               leading: IconButton(
                 color: textCorlor,
-                icon: const Icon(Icons.arrow_back, size: 20.0),
+                icon: const Icon(Icons.chevron_left_rounded, size: 20.0),
                 onPressed: () {
                   Navigator.pop(context);
                   // Navigator.push(context,
