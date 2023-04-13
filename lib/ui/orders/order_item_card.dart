@@ -34,7 +34,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       height: min(widget.order.productCount * 20.0 + 10, 100),
       child: ListView(
-        children: widget.order.products
+        children: widget.order.products!
             .map(
               (prod) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

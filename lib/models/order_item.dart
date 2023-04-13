@@ -1,10 +1,11 @@
 import 'package:panow/models/cart_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class OrderItem with ChangeNotifier {
   final String? id;
   final double amount;
-  final List<CartItem> products;
+  final List<CartItem>? products;
   final DateTime dateTime;
   final String name;
   final String email;
@@ -12,13 +13,13 @@ class OrderItem with ChangeNotifier {
   final String address;
 
   int get productCount {
-    return products.length;
+    return products!.length;
   }
 
   OrderItem({
     this.id,
     required this.amount,
-    required this.products,
+    this.products,
     required this.name,
     required this.email,
     required this.phone,
@@ -51,7 +52,7 @@ class OrderItem with ChangeNotifier {
   Map<String, dynamic> toJson() {
     return {
       'amount': amount,
-      'products': products,
+      // 'products': products,
       'name': name,
       'email': email,
       'phone': phone,
@@ -63,7 +64,7 @@ class OrderItem with ChangeNotifier {
     return OrderItem(
       id: json['id'],
       amount: json['amount'],
-      products: json['products'],
+      // products: json['products'],
       name: json['name'],
       email: json['email'],
       phone: json['phone'],

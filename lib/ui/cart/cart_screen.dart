@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/ui/orders/order_information.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:panow/ui/control_screen.dart';
@@ -68,7 +69,6 @@ class _CartScreenState extends State<CartScreen> {
     //     },
     //   ),
     // );
-
 //---------------Old Version------------------
     // return Scaffold(
     //   appBar: AppBar(
@@ -99,7 +99,10 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Expanded(
               child: SingleChildScrollView(
-                child: Container(height: 1000, child: buildCartDetails(cart)),
+                child: Container(
+                  height: 1000, 
+                  child: buildCartDetails(cart)
+                ),
               ),
             ),
             Container(
@@ -121,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
                   ), //BoxShadow
                 ],
               ),
-              child: buildCartSummary(cart, total, email),
+              child: buildCartSummary(cart, total, email, context),
             )
           ]),
         );
@@ -179,7 +182,7 @@ class _CartScreenState extends State<CartScreen> {
   //   );
   // }
 
-  Widget buildCartSummary(CartManager cart, total, email) {
+  Widget buildCartSummary(CartManager cart, total, email, BuildContext context) {
     return Column(
       children: [
         Row(
@@ -235,6 +238,33 @@ class _CartScreenState extends State<CartScreen> {
                   fontSize: 18,
                   // fontWeight: FontWeight.bold,
                 ),
+                onPressed: cart.totalAmount <= 0
+                    ? null
+                    : () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OrderInformation(cart.products, cart.totalAmount, email)
+                                // OrderInfo(
+                                //     cart.products, cart.totalAmount, email  )
+                                ));
+
+                        // context
+                        //     .read<OrdersManager>()
+                        //     .addOrder(cart.products);
+                        // cart.clear();
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => OrderScreen()));
+                      },
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.only(
+                        top: 15, bottom: 15, left: 50, right: 50),
+                    foregroundColor: Colors.white,
+                    elevation: 20,
+                    backgroundColor: primaryCorlor),
+
               ),
               onPressed: cart.totalAmount <= 0
                   ? null

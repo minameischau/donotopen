@@ -13,12 +13,12 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  // late Future<void> _fetchOrders;
+  late Future<void> _fetchOrders;
 
   @override
   void initState() {
     super.initState();
-    // _fetchOrders = context.read<OrdersManager>().fetchOrders();
+    _fetchOrders = context.read<OrdersManager>().fetchOrders();
   }
 
   // @override
@@ -26,8 +26,8 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    context.select<OrdersManager, List<OrderItem>>(
-        (ordersManager) => ordersManager.items);
+    // context.select<OrdersManager, List<OrderItem>>(
+    //     (ordersManager) => ordersManager.items);
     ChangeNotifierProvider(create: (context) => AuthManager());
     return Consumer<AuthManager>(builder: (context, authManager, child) {
       return Scaffold(
@@ -111,5 +111,17 @@ class _OrderScreenState extends State<OrderScreen> {
             ],
           ));
     });
+  }
+
+  Widget buildHomeIcon() {
+    return IconButton(
+      icon: const Icon(Icons.home_rounded),
+      onPressed: () {
+        // Navigator.of(context).pushNamed(
+        //   HomeScreen.routeName,
+        // );
+        Navigator.of(context).pushReplacementNamed('/');
+      },
+    );
   }
 }
