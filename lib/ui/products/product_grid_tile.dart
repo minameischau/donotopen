@@ -41,6 +41,7 @@ class ProductGridTile extends StatelessWidget {
         valueListenable: product.isFavoriteListenable,
         builder: (ctx, isFavorite, child) {
           return IconButton(
+            iconSize: 20,
             icon: Icon(
               product.isFavorite ? Icons.favorite : Icons.favorite_border,
             ),

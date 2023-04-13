@@ -113,18 +113,38 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   },
                   child: const AppIcon(icon: Icons.chevron_left_rounded),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CartScreen(),
-                        // builder: (context) => HomeScreen()
+
+                Consumer<CartManager>(
+                  builder: (ctx, cartManager, child) {
+                    final cart = context.watch<CartManager>();
+                    final total = cart.productCount;
+                    return TopRightBadge(
+                      data: total,
+                      color: red,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.shopping_cart_rounded,
+                          color: white,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(CartScreen.routeName);
+                        },
                       ),
                     );
                   },
-                  child: AppIcon(icon: Icons.shopping_cart_rounded),
                 ),
+                // TextButton(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //         builder: (context) => const CartScreen(),
+                //         // builder: (context) => HomeScreen()
+                //       ),
+                //     );
+                //   },
+                //   child: AppIcon(icon: Icons.shopping_cart_rounded),
+                // ),
               ],
             ),
           ),
@@ -183,12 +203,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                       const SizedBox(width: 10),
                       const Text(
-                        'Đã bán',
+                        'Sold',
                         style: TextStyle(color: blueGrey),
                       ),
                       const SizedBox(width: 5),
                       const Text(
-                        '234',
+                        '197',
                         style: TextStyle(color: blueGrey),
                       )
                     ],
@@ -202,13 +222,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           children: [
                             WidgetSpan(
                               child: Icon(
-                                Icons.delivery_dining_rounded,
+                                Icons.local_shipping_rounded,
                                 size: 20,
                                 color: red,
                               ),
                             ),
                             TextSpan(
-                              text: '\t\tGiao hàng miễn phí',
+                              text: '\t\tFree shipping',
                               style: TextStyle(color: black26),
                             ),
                           ],
@@ -225,7 +245,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: '\t\tChính hãng',
+                              text: '\t\tGenuine',
                               style: TextStyle(color: black26),
                             ),
                           ],
@@ -251,7 +271,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Mô tả',
+                        'Description',
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 18),
                       ),
@@ -270,7 +290,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         ],
       ),
-      
+
       //Them gio hang
       bottomNavigationBar: Container(
         height: 100,
@@ -304,8 +324,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: EdgeInsets.only(left: 20, right: 20),
                     child: Text(
                       '$_n',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 17),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
                     ),
                   ),
                   Container(
@@ -326,8 +346,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
             ),
             Container(
-              padding:
-                  EdgeInsets.only(top: 0, bottom: 0, left: 30, right: 30),
+              padding: EdgeInsets.only(top: 0, bottom: 0, left: 30, right: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: deepOrange),
               child: Row(
@@ -344,12 +363,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       );
                     },
-                    child: Text(
-                      'THÊM VÀO GIỎ HÀNG',
+                    child: const Text(
+                      'ADD TO CART',
                       style: TextStyle(
                         fontSize: 14,
                         color: white,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

@@ -42,8 +42,7 @@ class HomeProductGridTile extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 20),
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              borderRadius:
-                  BorderRadius.horizontal(right: Radius.circular(10)),
+              borderRadius: BorderRadius.horizontal(right: Radius.circular(10)),
               boxShadow: [
                 BoxShadow(
                   color: Color(0xFFe8e8e8),
@@ -64,60 +63,64 @@ class HomeProductGridTile extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //Ten
-                    BigText(
-                      text: product.title,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      height: 6,
-                    ),
-                    SmallText(
-                      text: formatCurrency(product.price),
-                      size: 16,
-                    ),
-                    SizedBox(
-                      height: 6,
-                    ),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) => Icon(
-                                    Icons.star,
-                                    color: primaryCorlor,
-                                    size: 12,
-                                  )),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        SmallText(text: "4.5"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        // Icon(Icons.favorite)
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6,
-                    ),
-                    SmallText(text: "127 Comments"),
-                    // SizedBox(
-                    //   width: 20,
-                    // ),
-                    // SmallText(text: "")
-          
-                    // IconAndText(
-                    //     icon: Icons.access_time_rounded,
-                    //     size: 15,
-                    //     text: "27 days",
-                    //     iconColor: primaryCorlor)
-                  ]),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  //Ten
+                  BigText(
+                    text: product.title,
+                    size: 18,
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  SmallText(
+                    text: formatCurrency(product.price),
+                    size: 16,
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    children: [
+                      Wrap(
+                        children: List.generate(
+                            4,
+                            (index) => Icon(
+                                  Icons.star,
+                                  color: primaryCorlor,
+                                  size: 12,
+                                )),
+                      ),
+                      Icon(
+                        Icons.star_half,
+                        color: primaryCorlor,
+                        size: 12,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SmallText(text: "4.9"),
+
+                      SizedBox(
+                        width: 10,
+                      ),
+                      // Icon(Icons.favorite)
+                    ],
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  SmallText(text: "127 Comments"),
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
+                  // SmallText(text: "")
+
+                  // IconAndText(
+                  //     icon: Icons.access_time_rounded,
+                  //     size: 15,
+                  //     text: "27 days",
+                  //     iconColor: primaryCorlor)
+                ]),
                 ValueListenableBuilder<bool>(
                   valueListenable: product.isFavoriteListenable,
                   builder: (ctx, isFavorite, child) {
@@ -130,13 +133,16 @@ class HomeProductGridTile extends StatelessWidget {
                           IconButton(
                             icon: Icon(
                               // Icons.favorite_outline_rounded,
-                              product.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
-                              size: 38,
+                              product.isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_rounded,
+                              size: 35,
                               color: primaryCorlor,
                             ),
                             onPressed: () {
-                              ctx.read<ProductsManager>().toggleFavoriteStatus(product);
-                              
+                              ctx
+                                  .read<ProductsManager>()
+                                  .toggleFavoriteStatus(product);
                             },
                           )
                         ],
@@ -145,7 +151,6 @@ class HomeProductGridTile extends StatelessWidget {
                   },
                 )
               ],
-              
             ),
           ),
 
