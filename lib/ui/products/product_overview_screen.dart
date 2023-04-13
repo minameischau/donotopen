@@ -42,8 +42,8 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ),
         ),
         actions: <Widget>[
-          buildProductFilterMenu(),
           buildSearchIcon(),
+          buildProductFilterMenu(),
           buildShoppingCartIcon(),
         ],
       ),
@@ -90,7 +90,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       },
     );
   }
-  
+
   Widget buildSearchIcon() {
     return IconButton(
       icon: const Icon(Icons.search_rounded),
@@ -117,11 +117,23 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       itemBuilder: (ctx) => [
         const PopupMenuItem(
           value: FilterOptions.favorites,
-          child: Text("Only Favorites"),
+          child: ListTile(
+            leading: Icon(
+              Icons.favorite_rounded,
+            ),
+            title: Text(
+              "Only Favorites",
+            ),
+          ),
         ),
         const PopupMenuItem(
           value: FilterOptions.all,
-          child: Text("Show All"),
+          child: ListTile(
+            leading: Icon(Icons.shopping_bag),
+            title: Text(
+              "Show All",
+            ),
+          ),
         ),
       ],
     );

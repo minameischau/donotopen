@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/const.dart';
 
 class TopRightBadge extends StatelessWidget {
   const TopRightBadge({
@@ -21,6 +22,7 @@ class TopRightBadge extends StatelessWidget {
         Positioned(
           top: 8,
           right: 8,
+          // bottom: 0,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -36,9 +38,7 @@ class TopRightBadge extends StatelessWidget {
             child: Text(
               data.toString(),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 10,
-              ),
+              style: const TextStyle(fontSize: 10, color: white),
             ),
           ),
         )
