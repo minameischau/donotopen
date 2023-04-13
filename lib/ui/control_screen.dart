@@ -36,6 +36,7 @@ export 'package:panow/ui/shared/dialog_utils.dart';
 
 export 'package:panow/ui/widgets/app_banner.dart';
 export 'package:panow/ui/widgets/appicon.dart';
+export 'package:panow/ui/widgets/banner_screen.dart';
 export 'package:panow/ui/widgets/big_text.dart';
 export 'package:panow/ui/widgets/category_list.dart';
 export 'package:panow/ui/widgets/icon_and_text.dart';
