@@ -138,7 +138,8 @@ class _AuthProfileState extends State<AuthProfile> {
               },
               child: Row(
                 children: [
-                  const Icon(Icons.edit, size: 20, color: primaryCorlor),
+                  const Icon(Icons.edit_rounded,
+                      size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
                   const Text('Product management',
                       style:
@@ -160,7 +161,7 @@ class _AuthProfileState extends State<AuthProfile> {
               },
               child: Row(
                 children: [
-                  const Icon(Icons.favorite_border_rounded,
+                  const Icon(Icons.favorite_rounded,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
                   const Text('Favorite product',
@@ -188,7 +189,7 @@ class _AuthProfileState extends State<AuthProfile> {
               },
               child: Row(
                 children: [
-                  const Icon(Icons.shopping_bag_outlined,
+                  const Icon(Icons.shopping_bag_rounded,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
                   const Text('Order management',
@@ -209,7 +210,7 @@ class _AuthProfileState extends State<AuthProfile> {
               },
               child: Row(
                 children: [
-                  const Icon(Icons.shopping_bag_outlined,
+                  const Icon(Icons.shopping_bag_rounded,
                       size: 20, color: primaryCorlor),
                   const SizedBox(width: 10),
                   const Text('Your order',
@@ -236,7 +237,7 @@ class _AuthProfileState extends State<AuthProfile> {
         },
         child: Row(
           children: [
-            const Icon(Icons.settings, size: 20, color: primaryCorlor),
+            const Icon(Icons.settings_rounded, size: 20, color: primaryCorlor),
             const SizedBox(width: 10),
             const Text('Setting',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -326,7 +327,7 @@ class _AuthProfileState extends State<AuthProfile> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Icon(Icons.logout), // add an icon
+          Icon(Icons.logout_rounded), // add an icon
           SizedBox(width: 10), // add spacing between icon and text
           Text('Log out'), // add text
         ],

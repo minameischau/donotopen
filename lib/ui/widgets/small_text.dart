@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/const.dart';
 
 class SmallText extends StatelessWidget {
   final Color? color;
@@ -7,7 +8,7 @@ class SmallText extends StatelessWidget {
   double height;
   SmallText(
       {Key? key,
-      this.color = const Color.fromARGB(255, 154, 154, 154),
+      this.color = greyText,
       required this.text,
       this.size = 12,
       this.height = 1.2})
@@ -17,7 +18,8 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: color, fontFamily: 'Poppins', fontSize: size),
+      style: TextStyle(
+          color: color, fontFamily: 'SFCompactRounded', fontSize: size),
     );
   }
 }

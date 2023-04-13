@@ -37,7 +37,7 @@ class _CardItemCardState extends State<CardItemCard> {
           vertical: 4,
         ),
         child: const Icon(
-          Icons.delete,
+          Icons.delete_outline_rounded,
           color: Colors.white,
           size: 40,
         ),
@@ -57,7 +57,6 @@ class _CardItemCardState extends State<CardItemCard> {
   }
 
   Widget buildItemCard() {
-    
     // return Card(
     //   margin: const EdgeInsets.symmetric(
     //     horizontal: 15,
@@ -84,81 +83,80 @@ class _CardItemCardState extends State<CardItemCard> {
 //-----------------------Old version end -------------------------
     return Row(
       children: [
-          Container(
-            margin: EdgeInsets.only(left: 20, bottom: 20),
-            height: 120,
-            width: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                  image: NetworkImage(widget.cardItem.imageUrl),
-                  fit: BoxFit.cover),
-            ),
+        Container(
+          margin: EdgeInsets.only(left: 20, bottom: 20),
+          height: 120,
+          width: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+                image: NetworkImage(widget.cardItem.imageUrl),
+                fit: BoxFit.cover),
           ),
-          Container(
-            height: 120,
-            width: 230,
-            margin: EdgeInsets.only(bottom: 20),
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.horizontal(right: Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFFe8e8e8),
-                  offset: const Offset(
-                    5.0,
-                    5.0,
+        ),
+        Container(
+          height: 120,
+          width: 230,
+          margin: EdgeInsets.only(bottom: 20),
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.horizontal(right: Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Color(0xFFe8e8e8),
+                offset: const Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 5.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+              BoxShadow(
+                color: Colors.white,
+                offset: const Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ), //BoxShadow
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BigText(
+                text: widget.cardItem.title,
+                size: 15,
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              SmallText(
+                text: '${formatCurrency(widget.cardItem.price)}',
+                size: 15,
+                color: Colors.red,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 10),
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.grey[200]),
+                width: 100,
+                child: Row(children: [
+                  Text(
+                    'Số lượng:',
+                    style: TextStyle(fontSize: 15),
                   ),
-                  blurRadius: 5.0,
-                  spreadRadius: 2.0,
-                ), //BoxShadow
-                BoxShadow(
-                  color: Colors.white,
-                  offset: const Offset(0.0, 0.0),
-                  blurRadius: 0.0,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BigText(
-                  text: widget.cardItem.title,
-                  size: 15,
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                SmallText(
-                  text: '${formatCurrency(widget.cardItem.price)}',
-                  size: 15,
-                  color: Colors.red,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 10),
-                  height: 30,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.grey[200]),
-                  width: 100,
-                  child: Row(children: [
-                    Text(
-                      'Số lượng:',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(width: 5),
-                    Text('${widget.cardItem.quantity}',
-                        style: TextStyle(fontSize: 17, color: Colors.red))
-                  ]),
-                )
-              ],
-            ),
+                  SizedBox(width: 5),
+                  Text('${widget.cardItem.quantity}',
+                      style: TextStyle(fontSize: 17, color: Colors.red))
+                ]),
+              )
+            ],
           ),
-
+        ),
       ],
     );
   }

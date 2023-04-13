@@ -196,7 +196,7 @@ class _AuthCardState extends State<AuthCard> {
               size: 16,
             )),
         labelText: 'Comfirm password',
-        prefixIcon: const Icon(Icons.key_outlined),
+        prefixIcon: const Icon(Icons.key_rounded),
       ),
       validator: _authMode == AuthMode.signup
           ? (value) {
@@ -249,7 +249,7 @@ class _AuthCardState extends State<AuthCard> {
   Widget _buildEmailField() {
     return TextFormField(
       decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.email_outlined),
+        prefixIcon: Icon(Icons.email_rounded),
         labelText: 'Email',
       ),
       keyboardType: TextInputType.emailAddress,

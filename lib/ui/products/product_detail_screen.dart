@@ -111,7 +111,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const AppIcon(icon: Icons.arrow_back),
+                  child: const AppIcon(icon: Icons.chevron_left_rounded),
                 ),
                 TextButton(
                   onPressed: () {
@@ -123,7 +123,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                     );
                   },
-                  child: AppIcon(icon: Icons.shopping_cart_outlined),
+                  child: AppIcon(icon: Icons.shopping_cart_rounded),
                 ),
               ],
             ),
@@ -219,7 +219,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           children: [
                             WidgetSpan(
                               child: Icon(
-                                Icons.gpp_good,
+                                Icons.gpp_good_rounded,
                                 size: 20,
                                 color: red,
                               ),
@@ -294,7 +294,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         minus();
                       },
                       child: Icon(
-                        Icons.remove,
+                        Icons.remove_rounded,
                         color: black,
                         size: 20,
                       ),
@@ -319,7 +319,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       onPressed: () {
                         add();
                       },
-                      child: Icon(Icons.add, color: black, size: 18),
+                      child: Icon(Icons.add_rounded, color: black, size: 18),
                     ),
                   )
                 ],

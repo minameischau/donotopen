@@ -106,7 +106,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
         title: const Text('Edit Product'),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.save),
+            icon: const Icon(Icons.save_rounded),
             onPressed: _saveForm,
           ),
         ],
@@ -171,7 +171,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       options: ["Keyboard", "Mouse", "Headphone"],
       decoration: InputDecoration(
           // border: OutlineInputBorder(),
-          suffixIcon: Icon(Icons.arrow_drop_down),
+          suffixIcon: Icon(Icons.arrow_drop_down_rounded),
           labelText: "Type"),
       dropdownHeight: 180,
       validator: (dynamic value) {

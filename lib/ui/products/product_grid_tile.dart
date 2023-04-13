@@ -57,7 +57,7 @@ class ProductGridTile extends StatelessWidget {
       ),
       trailing: IconButton(
         icon: const Icon(
-          Icons.shopping_cart,
+          Icons.shopping_cart_rounded,
         ),
         onPressed: () {
           final cart = context.read<CartManager>();

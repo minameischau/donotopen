@@ -46,24 +46,40 @@ class _HomeScreen extends State<HomeScreen> {
         items: const <BottomBarItem>[
           BottomBarItem(
             icon: Icon(Icons.home_rounded),
-            title: Text('Trang chủ'),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                  fontFamily: 'SFCompactRounded', fontWeight: FontWeight.bold),
+            ),
             activeColor: primaryCorlor,
           ),
           BottomBarItem(
-            icon: Icon(Icons.store_mall_directory_sharp),
-            title: Text('Sản phẩm'),
+            icon: Icon(Icons.store_mall_directory_rounded),
+            title: Text(
+              'Products',
+              style: TextStyle(
+                  fontFamily: 'SFCompactRounded', fontWeight: FontWeight.bold),
+            ),
             activeColor: primaryCorlor,
           ),
           BottomBarItem(
             icon: Icon(
-              Icons.shopping_cart,
+              Icons.shopping_cart_rounded,
             ),
-            title: Text('Giỏ hàng'),
+            title: Text(
+              'Cart',
+              style: TextStyle(
+                  fontFamily: 'SFCompactRounded', fontWeight: FontWeight.bold),
+            ),
             activeColor: primaryCorlor,
           ),
           BottomBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Tài khoản'),
+            icon: Icon(Icons.person_rounded),
+            title: Text(
+              'Me',
+              style: TextStyle(
+                  fontFamily: 'SFCompactRounded', fontWeight: FontWeight.bold),
+            ),
             activeColor: primaryCorlor,
           )
         ],
