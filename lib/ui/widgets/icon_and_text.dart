@@ -28,6 +28,7 @@ class IconAndText extends StatelessWidget {
         ),
         SmallText(
           text: text,
+          size: 16,
         )
       ],
     );

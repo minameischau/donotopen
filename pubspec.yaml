@@ -22,7 +22,10 @@ dependencies:
   bottom_bar: ^2.0.3
   animated_splash_screen: ^1.3.0
   flutter_svg: ^2.0.4
+
   getwidget: ^2.0.4
+
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -47,14 +50,16 @@ flutter:
     - .env
 
   fonts:
+    - family: SFCompactRounded
+      fonts:
+        - asset: assets/fonts/SFCompactRounded-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SFCompactRounded-Bold.ttf
+          weight: 700
+
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
         - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
-
-    - family: SignikaNegative
-      fonts:
-        - asset: assets/fonts/SignikaNegative-Regular.ttf
-        - asset: assets/fonts/SignikaNegative-Bold.ttf
           weight: 700

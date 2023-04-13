@@ -12,10 +12,10 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final search = ValueNotifier<String>('');
   List<String> searchList = [
-    "Bàn phím cơ",
+    "Keyboard",
     "logitech 650",
-    "Tai nghe Gaming",
-    "bàn phím"
+    "Gaming mouse",
+    "Keychron K8 Pro"
   ];
 
   @override
@@ -23,12 +23,12 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leadingWidth: 40,
+        leadingWidth: 30,
         title: searchBox(),
         iconTheme: const IconThemeData(
           color: primaryCorlor,
         ),
-        backgroundColor: white,
+        backgroundColor: grey,
         elevation: 0,
       ),
       body: Container(
@@ -43,18 +43,18 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Row(
                   children: const [
                     Text(
-                      'Tìm kiếm gần đây',
+                      'Recent search',
                       style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'SFCompactRounded',
                           color: black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16),
                     ),
                     Spacer(),
                     Text(
-                      'Xem tất cả',
+                      'See all',
                       style: TextStyle(
-                        fontFamily: 'Roboto',
+                        fontFamily: 'SFCompactRounded',
                         color: primaryCorlor,
                         fontSize: 16,
                       ),
@@ -84,14 +84,14 @@ class _SearchScreenState extends State<SearchScreen> {
           contentPadding: const EdgeInsets.only(left: 25, right: 20),
           title: Row(
             children: [
-              const Icon(Icons.access_time),
+              const Icon(Icons.access_time_rounded),
               const SizedBox(width: 10),
               Text(
                 pairsList[i],
               ),
               const Spacer(),
               IconButton(
-                icon: const Icon(Icons.close),
+                icon: const Icon(Icons.close_rounded),
                 onPressed: () {},
               )
             ],
@@ -110,37 +110,46 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget iconSearch() {
     return IconButton(
       onPressed: () {},
-      icon: const Icon(Icons.search),
+      icon: const Icon(Icons.search_rounded),
       color: primaryCorlor,
     );
   }
 
   Widget searchBox() {
-    return Container(
-      margin: const EdgeInsets.only(right: 0.0),
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-      height: 58,
-      decoration: const BoxDecoration(
-        color: white,
-      ),
-      child: TextField(
-        onSubmitted: ((value) {}),
-        onChanged: (value) {
-          search.value = value;
-        },
-        decoration: InputDecoration(
-          hintText: "Tìm kiếm",
-          hintStyle: const TextStyle(
+    return PreferredSize(
+      preferredSize: Size.fromHeight(kToolbarHeight),
+      child: Container(
+        // margin: const EdgeInsets.only(right: 0.0),
+        // alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            width: 2,
             color: primaryCorlor,
           ),
-          border: InputBorder.none,
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
+          // color: grey,
+        ),
+        child: TextField(
+          onSubmitted: ((value) {}),
+          onChanged: (value) {
+            search.value = value;
+          },
+          decoration: InputDecoration(
+            hintText: "Search",
+            hintStyle: const TextStyle(
+              fontFamily: 'SFCompactRounded',
               color: primaryCorlor,
             ),
+            border: InputBorder.none,
+            // focusedBorder: const UnderlineInputBorder(
+            //   borderSide: BorderSide(
+            //     color: primaryCorlor,
+            //   ),
+            // ),
+            suffixIcon: iconSearch(),
           ),
-          suffixIcon: iconSearch(),
         ),
       ),
     );

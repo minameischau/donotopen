@@ -65,7 +65,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
     return Column(
       children: [
         ListTile(
-          leading: const Icon(Icons.account_circle_outlined),
+          leading: const Icon(Icons.account_circle_rounded),
           title: const Text(
             'Tên người đặt hàng',
             style: TextStyle(
@@ -81,7 +81,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
           ),
         ),
         ListTile(
-          leading: const Icon(Icons.email_outlined),
+          leading: const Icon(Icons.email_rounded),
           title: const Text(
             'Email',
             style: TextStyle(
@@ -97,7 +97,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
           ),
         ),
         ListTile(
-          leading: const Icon(Icons.phone_enabled_outlined),
+          leading: const Icon(Icons.phone_enabled_rounded),
           title: const Text(
             'Số điện thoại',
             style: TextStyle(
@@ -113,7 +113,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
           ),
         ),
         ListTile(
-          leading: const Icon(Icons.date_range_outlined),
+          leading: const Icon(Icons.date_range_rounded),
           title: const Text(
             'Thời gian đặt hàng',
             style: TextStyle(

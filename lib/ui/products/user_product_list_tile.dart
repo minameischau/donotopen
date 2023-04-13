@@ -29,7 +29,7 @@ class UserProductListTile extends StatelessWidget {
 
   Widget buildDeleteButton(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.delete),
+      icon: const Icon(Icons.delete_rounded),
       onPressed: () {
         context.read<ProductsManager>().deleteProduct(product.id!);
         ScaffoldMessenger.of(context)
@@ -49,7 +49,7 @@ class UserProductListTile extends StatelessWidget {
 
   Widget buildEditButton(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.edit),
+      icon: const Icon(Icons.edit_rounded),
       onPressed: () {
         Navigator.of(context).pushNamed(
           EditProductScreen.routeName,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:panow/models/product.dart';
-import 'package:panow/ui/home/home_product_grid.dart';
+// import 'package:panow/ui/home/home_product_grid.dart';
 import 'package:panow/ui/home/home_product_grid_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../products/products_manager.dart';
+// import '../products/products_manager.dart';
 
 // import 'package:panow/models/product.dart';
 import 'package:panow/ui/control_screen.dart';
@@ -17,7 +17,6 @@ class HomePageScreen extends StatefulWidget {
   // final OnBoards onBoard;
   // const HomePageScreen({Key? key, required this.onBoard}) : super(key: key);
   const HomePageScreen({super.key});
-  
 
   // final Product product;
   @override
@@ -51,13 +50,21 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Panow"),
+        title: const Center(
+          child: Text(
+            'Panow Tech',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         actions: <Widget>[
           buildSearchIcon(),
           buildShoppingCartIcon(),
         ],
       ),
-      drawer: const AppDrawer(),
+      // drawer: const AppDrawer(),
       body: FutureBuilder(
           future: _fetchProducts,
           builder: (context, snapshot) {
@@ -77,299 +84,221 @@ class _HomePageScreenState extends State<HomePageScreen> {
               // print(_fetchProducts);
               // var products = context.select<ProductsManager, List<Product>>(
               //       (productsManager) => productsManager.items);
-              var products = context.read<ProductsManager>().getListProductsByType(category);
+              var products = context
+                  .read<ProductsManager>()
+                  .getListProductsByType(category);
               // print(liss.length);
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                    // Banner
-                    // const SizedBox(height: ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          height: 150,
-                          width: MediaQuery.of(context).size.width,
-                          color: primaryCorlor.withOpacity(.6),
-                          child: Stack(
-                            children: [
-                              // Positioned(
-                              //   bottom: -35,
-                              //   right: -30,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: 12,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   bottom: -35,
-                              //   left: -30,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: -12,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   top: -40,
-                              //   right: 100,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: -60,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   bottom: 0,
-                              //   right: 5,
-                              //   height: 135,
-                              //   child: Image.asset('assets/cats/cat2.png'),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //       horizontal: 20),
-                              //   child: Column(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     crossAxisAlignment:
-                              //         CrossAxisAlignment.start,
-                              //     children: [
-                              //       Text(
-                              //         'Join Our Animal\nLovers Community',
-                              //         style: TextStyle(
-                              //           fontSize: 16,
-                              //           fontWeight: FontWeight.bold,
-                              //           color: white,
-                              //         ),
-                              //       ),
-                              //       const SizedBox(height: 10),
-                              //       Container(
-                              //         padding: const EdgeInsets.symmetric(
-                              //             horizontal: 15, vertical: 5),
-                              //         decoration: BoxDecoration(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(10),
-                              //             color: orange),
-                              //         child: Text(
-                              //           'Join Us',
-                              //           style: TextStyle(
-                              //               color: white, fontSize: 14
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
+                      // Banner
+                      // const SizedBox(height: ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                      //   child: ClipRRect(
+                      //     borderRadius: BorderRadius.circular(20),
+                      //     child: Container(
+                      //       height: 150,
+                      //       width: MediaQuery.of(context).size.width,
+                      //       color: primaryCorlor.withOpacity(.6),
+                      //       child: Stack(
+                      //         children: [
+                      //           Positioned(
+                      //             bottom: 0,
+                      //             child: ClipRRect(
+                      //               borderRadius: BorderRadius.circular(30),
+                      //               child: Container(
+                      //                 height: 200,
+                      //                 width: MediaQuery.of(context).size.width -
+                      //                     40,
+                      //                 color: orange200,
+                      //                 child: Stack(
+                      //                   children: [
+                      //                     Positioned(
+                      //                       left: 28,
+                      //                       height: 273,
+                      //                       child: SvgPicture.asset(
+                      //                         "assets/panow.svg",
+                      //                         color: white,
+                      //                       ),
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           ),
+                      //           // Positioned(
+                      //           // child: Image.asset(
+                      //           //   onBoard.image,
+                      //           //   height: 500,
+                      //           // ),
+                      //           // ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
-                              Positioned(
-                                bottom: 0,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: Container(
-                                    height: 200,
-                                    width:
-                                        MediaQuery.of(context).size.width - 40,
-                                    color: orange200,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: 28,
-                                          height: 273,
-                                          child: SvgPicture.asset(
-                                            "assets/panow.svg",
-                                            color: white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              // Positioned(
-                              // child: Image.asset(
-                              //   onBoard.image,
-                              //   height: 500,
-                              // ),
-                              // ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    //Categories
-                    // const SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Danh mục',
-                            style: TextStyle(
-                              color: black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            children: [
-                              Text(
-                                'Xem tất cả',
-                                style: TextStyle(
-                                  color: orange,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: orange),
-                                child: const Icon(
-                                    Icons.keyboard_arrow_right_rounded,
-                                    size: 14,
-                                    color: white),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    //Các danh mục
-                    // const SizedBox(height: 15),
-                    SingleChildScrollView(
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 20),
-                          // Container(
-                          //     padding: const EdgeInsets.symmetric(
-                          //         vertical: 10, horizontal: 15),
-                          //     decoration: const BoxDecoration(color: white),
-                          //     child: const Icon(Icons.tune_rounded)),
-                          ...List.generate(
-                            categories.length,
-                            (index) => Padding(
-                              padding: index == 0
-                                  ? const EdgeInsets.symmetric(horizontal: 20)
-                                  : const EdgeInsets.only(right: 20),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    category = categories[index];
-                                  });
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: categories[index] == category
-                                        ? primaryCorlor
-                                        : white,
-                                    boxShadow: [
-                                      categories[index] == category
-                                          ? const BoxShadow(
-                                              offset: Offset(0, 5),
-                                              color: primaryCorlor,
-                                              spreadRadius: 0,
-                                              blurRadius: 10)
-                                          : const BoxShadow(color: white)
-                                    ],
-                                  ),
-                                  child: Text(
-                                    categories[index],
-                                    style: TextStyle(
-                                        color: categories[index] == category
-                                            ? white
-                                            : black,
-                                        fontSize: 14),
-                                  ),
-                                ),
+                      //Categories
+                      // const SizedBox(height: 15),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Categories',
+                              style: TextStyle(
+                                color: black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-
-                    //Sản phẩm
-                    // const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Sản phẩm',
-                            style: TextStyle(
-                              color: black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            children: [
-                              Text(
-                                'Xem tất cả',
-                                style: TextStyle(
-                                  color: orange,
-                                  fontSize: 12,
+                            const Spacer(),
+                            Row(
+                              children: [
+                                const Text(
+                                  'See all',
+                                  style: TextStyle(
+                                    color: secondCorlor,
+                                    fontSize: 12,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProductsOverviewScreen(
-                                              // pet: ProductsManager
-                                              //     .getListPet(category)[index]),
-                                              ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
+                                const SizedBox(width: 10),
+                                Container(
                                   padding: const EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      color: orange),
+                                      color: secondCorlor),
                                   child: const Icon(
                                       Icons.keyboard_arrow_right_rounded,
                                       size: 14,
                                       color: white),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    
-                    // const SizedBox(height: 15),
-                    // Container(
-                    //   height: 1000,
-                      
+
+                      //Các danh mục
+                      // const SizedBox(height: 15),
+                      SingleChildScrollView(
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 20),
+                            // Container(
+                            //     padding: const EdgeInsets.symmetric(
+                            //         vertical: 10, horizontal: 15),
+                            //     decoration: const BoxDecoration(color: white),
+                            //     child: const Icon(Icons.tune_rounded)),
+                            ...List.generate(
+                              categories.length,
+                              (index) => Padding(
+                                padding: index == 0
+                                    ? const EdgeInsets.symmetric(horizontal: 20)
+                                    : const EdgeInsets.only(right: 20),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      category = categories[index];
+                                    });
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15, vertical: 15),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: categories[index] == category
+                                          ? primaryCorlor
+                                          : white,
+                                      boxShadow: [
+                                        categories[index] == category
+                                            ? const BoxShadow(
+                                                offset: Offset(0, 5),
+                                                color: primaryCorlor,
+                                                spreadRadius: 0,
+                                                blurRadius: 10)
+                                            : const BoxShadow(color: white)
+                                      ],
+                                    ),
+                                    child: Text(
+                                      categories[index],
+                                      style: TextStyle(
+                                          color: categories[index] == category
+                                              ? white
+                                              : black,
+                                          fontSize: 14),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+
+                      //Sản phẩm
+                      // const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Products',
+                              style: TextStyle(
+                                color: black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            Row(
+                              children: [
+                                const Text(
+                                  'See all',
+                                  style: TextStyle(
+                                    color: secondCorlor,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProductsOverviewScreen(
+                                                // pet: ProductsManager
+                                                //     .getListPet(category)[index]),
+                                                ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: secondCorlor),
+                                    child: const Icon(
+                                        Icons.keyboard_arrow_right_rounded,
+                                        size: 14,
+                                        color: white),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // const SizedBox(height: 15),
+                      // Container(
+                      //   height: 1000,
+
                       // child: Row(
-                        
+
                       //   children: List.generate(
                       //     listProducts.length,
                       //     (index) => Padding(
@@ -381,13 +310,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       //           : const EdgeInsets.only(
                       //               right: 20,
                       //             ),
-                      //       child: GestureDetector( 
+                      //       child: GestureDetector(
                       //         onTap: () {
                       //           // Navigator.of(context).pushNamed(
                       //           //   ProductDetailScreen.routeName,
                       //           //   arguments: product.id,
                       //           // );
-                                
+
                       //             Navigator.push(
                       //               context,
                       //               MaterialPageRoute(
@@ -403,10 +332,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       //     ),
                       //   ),
                       // ),
-                      
+
                       // child: HomeProductGrid(),
 
-            // ------------------->          
+                      // ------------------->
                       // child: ListView.builder(
                       //   // physics: NeverScrollableScrollPhysics(),
                       //   // shrinkWrap: true,
@@ -414,374 +343,290 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       //   itemCount: products.length,
                       //   itemBuilder: (context, index) => HomeProductGridTile(products[index])
                       // ),
-            //----------------------->
-                    // ),
-                    // Expanded(
-                    ListView.builder(
-                      // physics: NeverScrollableScrollPhysics(),
-                      // shrinkWrap: true,
-                      // scrollDirection: Axis.vertical,
-                      itemCount: products.length,
-                      itemBuilder: (context, index) => HomeProductGridTile(products[index])
-                    ),
-                    // )
-                    
-                    
-                  ],
-                
+                      //----------------------->
+                      // ),
+                      // Expanded(
+                      ListView.builder(
+                          // physics: NeverScrollableScrollPhysics(),
+                          // shrinkWrap: true,
+                          // scrollDirection: Axis.vertical,
+                          itemCount: products.length,
+                          itemBuilder: (context, index) =>
+                              HomeProductGridTile(products[index])),
+                      // )
+                    ],
                   ),
                 ),
               );
               return Column(
                 // child: Column(
-                  children: [
-                    // Banner
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          height: 150,
-                          width: MediaQuery.of(context).size.width,
-                          color: primaryCorlor.withOpacity(.6),
-                          child: Stack(
-                            children: [
-                              // Positioned(
-                              //   bottom: -35,
-                              //   right: -30,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: 12,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   bottom: -35,
-                              //   left: -30,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: -12,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   top: -40,
-                              //   right: 100,
-                              //   width: 150,
-                              //   height: 150,
-                              //   child: Transform.rotate(
-                              //     angle: -60,
-                              //     child: SvgPicture.asset(
-                              //       'assets/Paw_Print.svg',
-                              //       color: primaryCorlor,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned(
-                              //   bottom: 0,
-                              //   right: 5,
-                              //   height: 135,
-                              //   child: Image.asset('assets/cats/cat2.png'),
-                              // ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //       horizontal: 20),
-                              //   child: Column(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     crossAxisAlignment:
-                              //         CrossAxisAlignment.start,
-                              //     children: [
-                              //       Text(
-                              //         'Join Our Animal\nLovers Community',
-                              //         style: TextStyle(
-                              //           fontSize: 16,
-                              //           fontWeight: FontWeight.bold,
-                              //           color: white,
-                              //         ),
-                              //       ),
-                              //       const SizedBox(height: 10),
-                              //       Container(
-                              //         padding: const EdgeInsets.symmetric(
-                              //             horizontal: 15, vertical: 5),
-                              //         decoration: BoxDecoration(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(10),
-                              //             color: orange),
-                              //         child: Text(
-                              //           'Join Us',
-                              //           style: TextStyle(
-                              //               color: white, fontSize: 14
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
+                children: [
+                  // Banner
+                  const SizedBox(height: 20),
+                  BannerScreen(),
+                  // buildSlideCard(),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  //   child: ClipRRect(
+                  //     borderRadius: BorderRadius.circular(20),
+                  //     child: Container(
+                  //       height: 150,
+                  //       width: MediaQuery.of(context).size.width,
+                  //       color: primaryCorlor.withOpacity(.6),
+                  //       child: Stack(
+                  //         children: [
+                  //           Positioned(
+                  //             bottom: 0,
+                  //             child: ClipRRect(
+                  //               borderRadius: BorderRadius.circular(30),
+                  //               child: Container(
+                  //                 height: 200,
+                  //                 width: MediaQuery.of(context).size.width - 40,
+                  //                 color: orange200,
+                  //                 child: Stack(
+                  //                   children: [
+                  //                     Positioned(
+                  //                       left: 28,
+                  //                       height: 273,
+                  //                       child: SvgPicture.asset(
+                  //                         "assets/panow.svg",
+                  //                         color: white,
+                  //                       ),
+                  //                     ),
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           // Positioned(
+                  //           // child: Image.asset(
+                  //           //   onBoard.image,
+                  //           //   height: 500,
+                  //           // ),
+                  //           // ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
 
-                              Positioned(
-                                bottom: 0,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: Container(
-                                    height: 200,
-                                    width:
-                                        MediaQuery.of(context).size.width - 40,
-                                    color: orange200,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          left: 28,
-                                          height: 273,
-                                          child: SvgPicture.asset(
-                                            "assets/panow.svg",
-                                            color: white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              // Positioned(
-                              // child: Image.asset(
-                              //   onBoard.image,
-                              //   height: 500,
-                              // ),
-                              // ),
-                            ],
+                  //Categories
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Categories',
+                          style: TextStyle(
+                            color: black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                    ),
-
-                    //Categories
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Danh mục',
-                            style: TextStyle(
-                              color: black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                        const Spacer(),
+                        Row(
+                          children: [
+                            const Text(
+                              'See all',
+                              style: TextStyle(
+                                color: secondCorlor,
+                                fontSize: 12,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            children: [
-                              Text(
-                                'Xem tất cả',
-                                style: TextStyle(
-                                  color: orange,
-                                  fontSize: 12,
+                            const SizedBox(width: 10),
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: secondCorlor),
+                              child: const Icon(
+                                  Icons.keyboard_arrow_right_rounded,
+                                  size: 14,
+                                  color: white),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //Các danh mục
+                  const SizedBox(height: 15),
+                  SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 20),
+                        // Container(
+                        //     padding: const EdgeInsets.symmetric(
+                        //         vertical: 10, horizontal: 15),
+                        //     decoration: const BoxDecoration(color: white),
+                        //     child: const Icon(Icons.tune_rounded)),
+                        ...List.generate(
+                          categories.length,
+                          (index) => Padding(
+                            padding: index == 0
+                                ? const EdgeInsets.symmetric(horizontal: 20)
+                                : const EdgeInsets.only(right: 20),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  category = categories[index];
+                                });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: categories[index] == category
+                                      ? primaryCorlor
+                                      : white,
+                                  boxShadow: [
+                                    categories[index] == category
+                                        ? const BoxShadow(
+                                            offset: Offset(0, 5),
+                                            color: primaryCorlor,
+                                            spreadRadius: 0,
+                                            blurRadius: 10)
+                                        : const BoxShadow(color: white)
+                                  ],
+                                ),
+                                child: Text(
+                                  categories[index],
+                                  style: TextStyle(
+                                      color: categories[index] == category
+                                          ? white
+                                          : black,
+                                      fontSize: 14),
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              Container(
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  //Sản phẩm
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Products',
+                          style: TextStyle(
+                            color: black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Row(
+                          children: [
+                            const Text(
+                              'See all',
+                              style: TextStyle(
+                                color: secondCorlor,
+                                fontSize: 12,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ProductsOverviewScreen(
+                                            // pet: ProductsManager
+                                            //     .getListPet(category)[index]),
+                                            ),
+                                  ),
+                                );
+                              },
+                              child: Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: orange),
+                                    color: secondCorlor),
                                 child: const Icon(
                                     Icons.keyboard_arrow_right_rounded,
                                     size: 14,
                                     color: white),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    //Các danh mục
-                    const SizedBox(height: 15),
-                    SingleChildScrollView(
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 20),
-                          // Container(
-                          //     padding: const EdgeInsets.symmetric(
-                          //         vertical: 10, horizontal: 15),
-                          //     decoration: const BoxDecoration(color: white),
-                          //     child: const Icon(Icons.tune_rounded)),
-                          ...List.generate(
-                            categories.length,
-                            (index) => Padding(
-                              padding: index == 0
-                                  ? const EdgeInsets.symmetric(horizontal: 20)
-                                  : const EdgeInsets.only(right: 20),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    category = categories[index];
-                                  });
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: categories[index] == category
-                                        ? primaryCorlor
-                                        : white,
-                                    boxShadow: [
-                                      categories[index] == category
-                                          ? const BoxShadow(
-                                              offset: Offset(0, 5),
-                                              color: primaryCorlor,
-                                              spreadRadius: 0,
-                                              blurRadius: 10)
-                                          : const BoxShadow(color: white)
-                                    ],
-                                  ),
-                                  child: Text(
-                                    categories[index],
-                                    style: TextStyle(
-                                        color: categories[index] == category
-                                            ? white
-                                            : black,
-                                        fontSize: 14),
-                                  ),
-                                ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
+                  ),
 
-                    //Sản phẩm
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Sản phẩm',
-                            style: TextStyle(
-                              color: black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            children: [
-                              Text(
-                                'Xem tất cả',
-                                style: TextStyle(
-                                  color: orange,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ProductsOverviewScreen(
-                                              // pet: ProductsManager
-                                              //     .getListPet(category)[index]),
-                                              ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: orange),
-                                  child: const Icon(
-                                      Icons.keyboard_arrow_right_rounded,
-                                      size: 14,
-                                      color: white),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 15),
-                    // Container(
-                    //   height: 1000,
-                      
-                      // child: Row(
-                        
-                      //   children: List.generate(
-                      //     listProducts.length,
-                      //     (index) => Padding(
-                      //       padding: index == 0
-                      //           ? const EdgeInsets.only(
-                      //               left: 20,
-                      //               right: 20,
-                      //             )
-                      //           : const EdgeInsets.only(
-                      //               right: 20,
-                      //             ),
-                      //       child: GestureDetector( 
-                      //         onTap: () {
-                      //           // Navigator.of(context).pushNamed(
-                      //           //   ProductDetailScreen.routeName,
-                      //           //   arguments: product.id,
-                      //           // );
-                                
-                      //             Navigator.push(
-                      //               context,
-                      //               MaterialPageRoute(
-                      //                 builder: (context) => ProductDetailScreen(
-                      //                   context.read<ProductsManager>().findById(listProducts[index].id as String)!,
-                      //                 ),
-                      //               ),
-                      //             );
-                      //         },
-                      //         child: productItem(
-                      //             context, listProducts[index]),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      
-                      // child: HomeProductGrid(),
+                  const SizedBox(height: 15),
+                  // Container(
+                  //   height: 1000,
 
-            // ------------------->          
-                      // child: ListView.builder(
-                      //   // physics: NeverScrollableScrollPhysics(),
-                      //   // shrinkWrap: true,
-                      //   scrollDirection: Axis.vertical,
-                      //   itemCount: products.length,
-                      //   itemBuilder: (context, index) => HomeProductGridTile(products[index])
-                      // ),
-            //----------------------->
-                    // ),
-                    Expanded(
-                      child: ListView.builder(
+                  // child: Row(
+
+                  //   children: List.generate(
+                  //     listProducts.length,
+                  //     (index) => Padding(
+                  //       padding: index == 0
+                  //           ? const EdgeInsets.only(
+                  //               left: 20,
+                  //               right: 20,
+                  //             )
+                  //           : const EdgeInsets.only(
+                  //               right: 20,
+                  //             ),
+                  //       child: GestureDetector(
+                  //         onTap: () {
+                  //           // Navigator.of(context).pushNamed(
+                  //           //   ProductDetailScreen.routeName,
+                  //           //   arguments: product.id,
+                  //           // );
+
+                  //             Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                 builder: (context) => ProductDetailScreen(
+                  //                   context.read<ProductsManager>().findById(listProducts[index].id as String)!,
+                  //                 ),
+                  //               ),
+                  //             );
+                  //         },
+                  //         child: productItem(
+                  //             context, listProducts[index]),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
+                  // child: HomeProductGrid(),
+
+                  // ------------------->
+                  // child: ListView.builder(
+                  //   // physics: NeverScrollableScrollPhysics(),
+                  //   // shrinkWrap: true,
+                  //   scrollDirection: Axis.vertical,
+                  //   itemCount: products.length,
+                  //   itemBuilder: (context, index) => HomeProductGridTile(products[index])
+                  // ),
+                  //----------------------->
+                  // ),
+                  Expanded(
+                    child: ListView.builder(
                         // physics: NeverScrollableScrollPhysics(),
                         // shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: products.length,
-                        itemBuilder: (context, index) => HomeProductGridTile(products[index])
-                      ),
-                    )
-                    
-                    
-                  ],
+                        itemBuilder: (context, index) =>
+                            HomeProductGridTile(products[index])),
+                  )
+                ],
                 // ),
               );
             }
@@ -799,12 +644,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
         final total = cart.productCount;
         // print(CartManager().productCount);
         return TopRightBadge(
-          
+
           data: total,
+
           // data: 1,
           child: IconButton(
             icon: const Icon(
-              Icons.shopping_cart,
+              Icons.shopping_cart_rounded,
             ),
             onPressed: () {
               Navigator.of(context).pushNamed(CartScreen.routeName);
@@ -862,7 +708,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             //     ),
             //   ),
             // ),
-            
+
             Positioned(
               bottom: -10,
               right: 20,
@@ -933,11 +779,56 @@ class _HomePageScreenState extends State<HomePageScreen> {
             //     ],
             //   ),
             // )
-         
           ],
         ),
       ),
     );
   }
 
+  Widget buildSlideCard() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          height: 150,
+          width: MediaQuery.of(context).size.width,
+          color: primaryCorlor.withOpacity(.6),
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: 0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width - 40,
+                    color: orange200,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 28,
+                          height: 273,
+                          child: SvgPicture.asset(
+                            "assets/panow.svg",
+                            color: white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              // Positioned(
+              // child: Image.asset(
+              //   onBoard.image,
+              //   height: 500,
+              // ),
+              // ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
