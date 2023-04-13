@@ -238,6 +238,7 @@ class _CartScreenState extends State<CartScreen> {
                   fontSize: 18,
                   // fontWeight: FontWeight.bold,
                 ),
+                ),
                 onPressed: cart.totalAmount <= 0
                     ? null
                     : () {
@@ -266,31 +267,7 @@ class _CartScreenState extends State<CartScreen> {
                     backgroundColor: primaryCorlor),
 
               ),
-              onPressed: cart.totalAmount <= 0
-                  ? null
-                  : () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => OrderScreen()
-                              // OrderInfo(
-                              //     cart.products, cart.totalAmount, email  )
-                              ));
-
-                      // context
-                      //     .read<OrdersManager>()
-                      //     .addOrder(cart.products, cart.totalAmount);
-                      // cart.clear();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => OrderScreen()));
-                    },
-              style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                  foregroundColor: white,
-                  elevation: 10,
-                  backgroundColor: primaryCorlor),
-            ),
+            // ),
           ],
         )
       ],
