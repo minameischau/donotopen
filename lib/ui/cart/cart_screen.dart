@@ -40,7 +40,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
-          body: Material(
+          body: Container(
             child: authManager.isAuth
                 ? buildPageCart(cart, total, authManager.authToken!.email)
                 : AuthScreen(),
@@ -88,25 +88,26 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget buildPageCart(cart, total, email) {
+    final deviceSize = MediaQuery.of(context).size;
     return Consumer<AuthManager>(
       builder: (context, authManager, child) {
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Column(children: [
-            // AppBarCart(),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 1000, 
-                  child: buildCartDetails(cart)
-                ),
-              ),
+        return SingleChildScrollView(
+          child: Column(children: [
+            // SizedBox(
+            //   height: 16,
+            // ),
+            // Expanded(
+            //   child: SingleChildScrollView(
+            //     child: Container(height: 1000, child: buildCartDetails(cart)),
+            //   ),
+            // ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              height: deviceSize.height * 0.64,
+              child: buildCartDetails(cart),
             ),
             Container(
-              height: 150,
+              height: deviceSize.height * 0.27,
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               decoration: const BoxDecoration(
                 boxShadow: [
@@ -182,7 +183,8 @@ class _CartScreenState extends State<CartScreen> {
   //   );
   // }
 
-  Widget buildCartSummary(CartManager cart, total, email, BuildContext context) {
+  Widget buildCartSummary(
+      CartManager cart, total, email, BuildContext context) {
     return Column(
       children: [
         Row(
@@ -238,35 +240,35 @@ class _CartScreenState extends State<CartScreen> {
                   fontSize: 18,
                   // fontWeight: FontWeight.bold,
                 ),
-                ),
-                onPressed: cart.totalAmount <= 0
-                    ? null
-                    : () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OrderInformation(cart.products, cart.totalAmount, email)
-                                // OrderInfo(
-                                //     cart.products, cart.totalAmount, email  )
-                                ));
-
-                        // context
-                        //     .read<OrdersManager>()
-                        //     .addOrder(cart.products);
-                        // cart.clear();
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => OrderScreen()));
-                      },
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 50, right: 50),
-                    foregroundColor: Colors.white,
-                    elevation: 20,
-                    backgroundColor: primaryCorlor),
-
               ),
+              onPressed: cart.totalAmount <= 0
+                  ? null
+                  : () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OrderInformation(
+                                  cart.products, cart.totalAmount, email)
+                              // OrderInfo(
+                              //     cart.products, cart.totalAmount, email  )
+                              ));
+
+                      // context
+                      //     .read<OrdersManager>()
+                      //     .addOrder(cart.products);
+                      // cart.clear();
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => OrderScreen()));
+                    },
+              style: TextButton.styleFrom(
+                  padding:
+                      EdgeInsets.only(top: 15, bottom: 15, left: 50, right: 50),
+                  foregroundColor: Colors.white,
+                  elevation: 20,
+                  backgroundColor: primaryCorlor),
+            ),
             // ),
           ],
         )
