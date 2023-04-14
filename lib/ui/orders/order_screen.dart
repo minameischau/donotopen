@@ -26,8 +26,6 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // context.select<OrdersManager, List<OrderItem>>(
-    //     (ordersManager) => ordersManager.items);
     ChangeNotifierProvider(create: (context) => AuthManager());
     return Consumer<AuthManager>(builder: (context, authManager, child) {
       return Scaffold(
@@ -36,8 +34,6 @@ class _OrderScreenState extends State<OrderScreen> {
                 icon: const Icon(Icons.chevron_left_rounded, size: 28.0),
                 onPressed: () {
                   Navigator.pop(context);
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => WelcomeScreen()));
                 },
               ),
               title: const Text(
@@ -53,37 +49,11 @@ class _OrderScreenState extends State<OrderScreen> {
                   onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => HomeScreen()));
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    // builder: (context) => const HomeScreen()));
                   },
                 ),
               ]),
           body: Column(
             children: [
-              // AppBarOrigin(
-              //   leading: IconButton(
-              //     color: textCorlor,
-              //     icon: const Icon(Icons.arrow_back, size: 20.0),
-              //     onPressed: () {
-              //       Navigator.pop(context);
-              //       // Navigator.push(context,
-              //       //     MaterialPageRoute(builder: (context) => WelcomeScreen()));
-              //     },
-              //   ),
-              //   title: 'Đơn đặt hàng',
-              //   action: IconButton(
-              //     color: textCorlor,
-              //     icon: const Icon(Icons.home_rounded, size: 20.0),
-              //     onPressed: () {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => const HomeScreen()));
-              //     },
-              //   ),
-              // ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Consumer<OrdersManager>(
@@ -104,7 +74,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             return OrderItemCard(ordersManager.items[i]);
                           }
                           return const Text(
-                            'Order Empty',
+                            '',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           );
@@ -118,16 +88,4 @@ class _OrderScreenState extends State<OrderScreen> {
           ));
     });
   }
-
-  // Widget buildHomeIcon() {
-  //   return IconButton(
-  //     icon: const Icon(Icons.home_rounded),
-  //     onPressed: () {
-  //       // Navigator.of(context).pushNamed(
-  //       //   HomeScreen.routeName,
-  //       // );
-  //       Navigator.of(context).pushReplacementNamed('/');
-  //     },
-  //   );
-  // }
 }

@@ -14,18 +14,17 @@ import 'package:intl/intl.dart';
 
 class OrderInformation extends StatefulWidget {
   final List<CartItem> product;
-  final email;
-  final total;
+  final String email;
+  final double total;
   OrderInformation(this.product, this.total, this.email, {super.key}) {
-    this.orderItem = OrderItem(
+    orderItem = OrderItem(
       id: null,
-      amount: this.total,
-      products: [],
+      amount: total,
+      products: product,
       name: '',
-      email: this.email,
+      email: email,
       phone: '',
       address: '',
-      dateTime: new DateTime.now(),
     );
   }
 
@@ -36,9 +35,6 @@ class OrderInformation extends StatefulWidget {
 }
 
 class _OrderInformationState extends State<OrderInformation> {
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController phoneController = new TextEditingController();
-  TextEditingController addressController = new TextEditingController();
   var _isLoading = false;
   final _addForm = GlobalKey<FormState>();
   late OrderItem _addOrder;
@@ -50,17 +46,54 @@ class _OrderInformationState extends State<OrderInformation> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    nameController.dispose();
-    phoneController.dispose();
-    addressController.dispose();
-    super.dispose();
-  }
-
   String formatCurrency(double amount) {
     final formatter = NumberFormat.currency(locale: 'vi_VN', symbol: 'VNĐ');
     return formatter.format(amount);
+  }
+
+  Future<void> _saveForm() async {
+    final isValid = _addForm.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _addForm.currentState!.save();
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final ordersManager = context.read<OrdersManager>();
+      await ordersManager.addOrder(_addOrder);
+      context.read<CartManager>().clear();
+    } catch (error) {
+      await showErrorDialog(context, 'Something went wrong.');
+    }
+    setState(() {
+      _isLoading = false;
+    });
+    if (mounted) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => OrderScreen()));
+    }
+  }
+
+  Future<void> showErrorDialog(BuildContext context, String message) {
+    return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('An Error Occurred'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -190,19 +223,19 @@ class _OrderInformationState extends State<OrderInformation> {
                               horizontal: deviceSize.width * .05),
                           child: TextFormField(
                             initialValue: _addOrder.phone,
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.phone,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "Phone number",
                             ),
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please provide a value.';
+                              if (value == null || value.length < 10) {
+                                return 'Invalid phone number.';
                               }
                               return null;
                             },
                             onSaved: (value) {
-                              _addOrder = _addOrder.copyWith(phone: value);
+                              _addOrder = _addOrder.copyWith(phone: value!);
                             },
                           ),
                         ),
@@ -217,7 +250,6 @@ class _OrderInformationState extends State<OrderInformation> {
                               //     nameController.text,
                               //     phoneController.text,
                               //     addressController.text);
-                              context.read<CartManager>().clear();
                             },
                             child: Text(
                               'Place Order',
@@ -251,56 +283,6 @@ class _OrderInformationState extends State<OrderInformation> {
       children: cart.productEntries
           .map((e) => CardItemCard(productId: e.key, cardItem: e.value))
           .toList(),
-    );
-  }
-
-  Future<void> _saveForm() async {
-    final isValid = _addForm.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
-    _addForm.currentState!.save();
-
-    setState(() {
-      _isLoading = true;
-    });
-    // print('save');
-    print(_addOrder.name);
-    print(_addOrder.amount);
-    print(_addOrder.address);
-    print(_addOrder.phone);
-    print(_addOrder.email);
-    try {
-      final ordersManager = context.read<OrdersManager>();
-      await ordersManager.addOrder(_addOrder);
-      print(ordersManager.orderCount);
-    } catch (error) {
-      await showErrorDialog(context, 'Something went wrong.');
-    }
-    setState(() {
-      _isLoading = false;
-    });
-    if (mounted) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => OrderScreen()));
-    }
-  }
-
-  Future<void> showErrorDialog(BuildContext context, String message) {
-    return showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('An Error Occurred'),
-        content: Text(message),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('Okay'),
-            onPressed: () {
-              Navigator.of(ctx).pop();
-            },
-          )
-        ],
-      ),
     );
   }
 }

@@ -38,8 +38,13 @@ class MyApp extends StatelessWidget {
               return productsManager;
             }),
         ChangeNotifierProvider(create: (ctx) => CartManager()),
-        ChangeNotifierProvider(create: (ctx) => OrdersManager()),
-        ChangeNotifierProvider(create: (ctx) => OrdersManager()),
+        ChangeNotifierProxyProvider<AuthManager, OrdersManager>(
+          create: (ctx) => OrdersManager(),
+          update: (ctx, authManager, ordersManager) {
+            ordersManager!.authToken = authManager.authToken;
+            return ordersManager;
+          },
+        )
       ],
       child: MaterialApp(
         title: 'PanOw Tech',
