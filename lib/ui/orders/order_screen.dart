@@ -33,24 +33,30 @@ class _OrderScreenState extends State<OrderScreen> {
       return Scaffold(
           appBar: AppBar(
               leading: IconButton(
-                color: textCorlor,
-                icon: const Icon(Icons.chevron_left_rounded, size: 20.0),
+                icon: const Icon(Icons.chevron_left_rounded, size: 28.0),
                 onPressed: () {
                   Navigator.pop(context);
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => WelcomeScreen()));
                 },
               ),
-              title: const Text('Đơn đặt hàng'),
+              title: const Text(
+                'Your Order',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               actions: [
                 IconButton(
-                  color: textCorlor,
                   icon: const Icon(Icons.home_rounded, size: 20.0),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomeScreen()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    // builder: (context) => const HomeScreen()));
                   },
                 ),
               ]),
@@ -98,7 +104,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             return OrderItemCard(ordersManager.items[i]);
                           }
                           return const Text(
-                            'Đơn đặt hàng trống',
+                            'Order Empty',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           );
@@ -113,15 +119,15 @@ class _OrderScreenState extends State<OrderScreen> {
     });
   }
 
-  Widget buildHomeIcon() {
-    return IconButton(
-      icon: const Icon(Icons.home_rounded),
-      onPressed: () {
-        // Navigator.of(context).pushNamed(
-        //   HomeScreen.routeName,
-        // );
-        Navigator.of(context).pushReplacementNamed('/');
-      },
-    );
-  }
+  // Widget buildHomeIcon() {
+  //   return IconButton(
+  //     icon: const Icon(Icons.home_rounded),
+  //     onPressed: () {
+  //       // Navigator.of(context).pushNamed(
+  //       //   HomeScreen.routeName,
+  //       // );
+  //       Navigator.of(context).pushReplacementNamed('/');
+  //     },
+  //   );
+  // }
 }

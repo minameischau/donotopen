@@ -31,6 +31,12 @@ class _FavoriteProductsScreenState extends State<FavoriteProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left_rounded, size: 28.0),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: const Text(
           "Favorites Product",
           style: TextStyle(

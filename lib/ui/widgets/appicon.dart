@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:panow/const.dart';
 
 class AppIcon extends StatelessWidget {
   final IconData icon;
@@ -9,23 +10,21 @@ class AppIcon extends StatelessWidget {
   const AppIcon(
       {super.key,
       required this.icon,
-      this.backgroundColor = const Color.fromARGB(255, 239, 238, 238),
-      this.iconColor = const Color(0xFF756d54),
+      // this.backgroundColor = const Color.fromARGB(255, 239, 238, 238),
+      this.backgroundColor = primaryCorlor,
+      // this.iconColor = const Color(0xFF756d54),
+      this.iconColor = white,
       this.size = 40});
   @override
   Widget build(BuildContext context) {
     return Container(
       width: size,
       height: size,
-      decoration:  BoxDecoration(
-        borderRadius: BorderRadius.circular(size/2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(size / 2),
         color: backgroundColor,
       ),
-      child: Icon(
-        icon,
-        color: iconColor,
-        size: 16
-        ),
+      child: Icon(icon, color: iconColor, size: 20),
     );
   }
 }

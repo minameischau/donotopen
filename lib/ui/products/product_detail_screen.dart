@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -85,6 +87,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         children: [
           //Image product
           Positioned(
+            top: 40,
             left: 0,
             right: 0,
             child: Container(
@@ -121,11 +124,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     return TopRightBadge(
                       data: total,
                       color: red,
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.shopping_cart_rounded,
-                          color: white,
-                        ),
+                      child: TextButton(
+                        child: AppIcon(icon: Icons.shopping_cart_rounded),
                         onPressed: () {
                           Navigator.of(context).pushNamed(CartScreen.routeName);
                         },
@@ -187,13 +187,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     children: [
                       Wrap(
                         spacing: 3,
-                        children: List.generate(5, (index) {
+                        children: List.generate(4, (index) {
                           return const Icon(Icons.star, color: amber, size: 20);
                         }),
                       ),
+                      const SizedBox(width: 3),
+                      const Icon(
+                        Icons.star_half,
+                        color: amber,
+                        size: 20,
+                      ),
                       const SizedBox(width: 10),
                       const Text(
-                        '5',
+                        '4.9',
                         style: TextStyle(color: blueGrey),
                       ),
                       const SizedBox(width: 10),

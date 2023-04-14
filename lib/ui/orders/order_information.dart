@@ -18,27 +18,31 @@ class OrderInformation extends StatefulWidget {
   final total;
   OrderInformation(this.product, this.total, this.email, {super.key}) {
     this.orderItem = OrderItem(
-        id: null,
-        amount: this.total,
-        products: [],
-        name: '',
-        email: this.email,
-        phone: '',
-        address: '',
-        dateTime: new DateTime.now());
+      id: null,
+      amount: this.total,
+      products: [],
+      name: '',
+      email: this.email,
+      phone: '',
+      address: '',
+      dateTime: new DateTime.now(),
+    );
   }
+
   late final OrderItem orderItem;
+
   @override
   State<OrderInformation> createState() => _OrderInformationState();
 }
 
 class _OrderInformationState extends State<OrderInformation> {
-  TextEditingController fullnameController = new TextEditingController();
+  TextEditingController nameController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
   TextEditingController addressController = new TextEditingController();
   var _isLoading = false;
   final _addForm = GlobalKey<FormState>();
   late OrderItem _addOrder;
+
   @override
   void initState() {
     setState(() {});
@@ -48,7 +52,7 @@ class _OrderInformationState extends State<OrderInformation> {
 
   @override
   void dispose() {
-    fullnameController.dispose();
+    nameController.dispose();
     phoneController.dispose();
     addressController.dispose();
     super.dispose();
@@ -67,7 +71,7 @@ class _OrderInformationState extends State<OrderInformation> {
       appBar: AppBar(
         title: const Center(
           child: Text(
-            'Confim information',
+            'Confirm Information',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -210,7 +214,7 @@ class _OrderInformationState extends State<OrderInformation> {
                               // context.read<OrdersManager>().addOrder(
                               //     widget.product,
                               //     widget.total,
-                              //     fullnameController.text,
+                              //     nameController.text,
                               //     phoneController.text,
                               //     addressController.text);
                               context.read<CartManager>().clear();
