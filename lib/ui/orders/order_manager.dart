@@ -32,17 +32,17 @@ class OrdersManager with ChangeNotifier {
     }
   }
 
-  // Future<void> deleteOrder(String id) async {
-  //   final index = _items.indexWhere((item) => item.id == id);
-  //   OrderItem? existingorder = _items[index];
-  //   _items.removeAt(index);
-  //   notifyListeners();
+  Future<void> deleteOrder(String id) async {
+    final index = _items.indexWhere((item) => item.id == id);
+    OrderItem? existingorder = _items[index];
+    _items.removeAt(index);
+    notifyListeners();
 
-  //   if (!await _orderService.deleteOrder(id)) {
-  //     _items.insert(index, existingorder);
-  //     notifyListeners();
-  //   }
-  // }
+    if (!await _orderService.deleteOrder(id)) {
+      _items.insert(index, existingorder);
+      notifyListeners();
+    }
+  }
 
   int get orderCount {
     return _items.length;
@@ -52,11 +52,11 @@ class OrdersManager with ChangeNotifier {
     return [..._items];
   }
 
-  // OrderItem? findById(String id) {
-  //   try {
-  //     return _items.firstWhere((element) => element.id == id);
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // }
+  OrderItem? findById(String id) {
+    try {
+      return _items.firstWhere((element) => element.id == id);
+    } catch (error) {
+      return null;
+    }
+  }
 }

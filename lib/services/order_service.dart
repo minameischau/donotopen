@@ -20,9 +20,7 @@ class OrderService extends FirebaseService {
         print(ordersMap['error']);
         return orders;
       }
-      print(response.body);
       ordersMap.forEach((orderId, order) {
-        print(order);
         orders.add(
           OrderItem.fromJson({
             'id': orderId,
@@ -30,6 +28,7 @@ class OrderService extends FirebaseService {
           }),
         );
       });
+
       return orders;
     } catch (error) {
       print(error);
@@ -52,19 +51,19 @@ class OrderService extends FirebaseService {
     }
   }
 
-  // Future<bool> deleteOrder(String id) async {
-  //   try {
-  //     final url = Uri.parse('$databaseUrl/orders/$id.json?auth=$token');
-  //     final response = await http.delete(url);
+  Future<bool> deleteOrder(String id) async {
+    try {
+      final url = Uri.parse('$databaseUrl/orders/$id.json?auth=$token');
+      final response = await http.delete(url);
 
-  //     if (response.statusCode != 200) {
-  //       throw Exception(json.decode(response.body)['error']);
-  //     }
+      if (response.statusCode != 200) {
+        throw Exception(json.decode(response.body)['error']);
+      }
 
-  //     return true;
-  //   } catch (error) {
-  //     print(error);
-  //     return false;
-  //   }
-  // }
+      return true;
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
 }
