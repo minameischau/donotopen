@@ -19,13 +19,36 @@ class OrderItem with ChangeNotifier {
   OrderItem({
     this.id,
     required this.amount,
-    this.products,
+    required this.products,
     required this.name,
     required this.email,
     required this.phone,
     required this.address,
     DateTime? dateTime,
   }) : dateTime = dateTime ?? DateTime.now();
+
+  Map<String, dynamic> toJson() {
+    return {
+      'amount': amount,
+      // 'products': products,
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'address': address,
+    };
+  }
+
+  static OrderItem fromJson(Map<String, dynamic> json) {
+    return OrderItem(
+      id: json['id'],
+      amount: json['amount'],
+      products: json['products'],
+      name: json['name'],
+      email: json['email'],
+      phone: json['phone'],
+      address: json['address'],
+    );
+  }
 
   OrderItem copyWith({
     String? id,
@@ -46,29 +69,6 @@ class OrderItem with ChangeNotifier {
       email: email ?? this.email,
       phone: phone ?? this.phone,
       address: address ?? this.address,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'amount': amount,
-      // 'products': products,
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'address': address,
-    };
-  }
-
-  static OrderItem fromJson(Map<String, dynamic> json) {
-    return OrderItem(
-      id: json['id'],
-      amount: json['amount'],
-      // products: json['products'],
-      name: json['name'],
-      email: json['email'],
-      phone: json['phone'],
-      address: json['address'],
     );
   }
 }

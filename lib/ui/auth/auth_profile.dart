@@ -71,17 +71,33 @@ class _AuthProfileState extends State<AuthProfile> {
     return Column(
       children: [
         Center(
-          child: Container(
-            height: 120,
-            width: 120,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(80),
-              image: DecorationImage(
-                  image: NetworkImage(
-                      'https://res.cloudinary.com/dvbzja2gq/image/upload/v1678609678/motorcycle/avt/avt1_pzd4ef.png'),
-                  fit: BoxFit.cover),
-            ),
-          ),
+          child: email == 'admin@gmail.com' || email == 'panow@gmail.com'
+              ? Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(80),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://res.cloudinary.com/dvbzja2gq/image/upload/v1678609678/motorcycle/avt/avt1_pzd4ef.png'),
+                        fit: BoxFit.cover),
+                  ),
+                )
+              : Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 2,
+                      color: primaryCorlor,
+                    ),
+                    borderRadius: BorderRadius.circular(80),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://res.cloudinary.com/dvbzja2gq/image/upload/v1678609679/motorcycle/avt/avt15_gcmlyg.png'),
+                        fit: BoxFit.cover),
+                  ),
+                ),
         ),
         const SizedBox(height: 10),
         Text(
@@ -184,8 +200,8 @@ class _AuthProfileState extends State<AuthProfile> {
       child: email == 'admin@gmail.com' || email == 'panow@gmail.com'
           ? GestureDetector(
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ProductList()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => OrderScreen()));
               },
               child: Row(
                 children: [
@@ -205,8 +221,8 @@ class _AuthProfileState extends State<AuthProfile> {
             )
           : GestureDetector(
               onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => ProductList()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => OrderScreen()));
               },
               child: Row(
                 children: [

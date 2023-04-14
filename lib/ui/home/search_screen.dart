@@ -23,6 +23,12 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left_rounded, size: 28.0),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         leadingWidth: 30,
         title: searchBox(),
         iconTheme: const IconThemeData(
