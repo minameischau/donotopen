@@ -128,6 +128,12 @@ class ProductsManager with ChangeNotifier {
     return _items.where((product) => product.type == name).toList();
   }
 
+  
+  List<Product> searchProduct(String name) {
+    return _items.where((product) => product.title.toLowerCase().contains(name.toLowerCase())).toList();
+  }
+
+
   Product? findById(String id) {
     try {
       return _items.firstWhere((element) => element.id == id);

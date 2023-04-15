@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'search_recent.dart';
 import 'package:panow/ui/control_screen.dart';
+import 'package:panow/ui/home/search_result.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search-product';
@@ -11,12 +13,21 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final search = ValueNotifier<String>('');
+  late Future<void> _fetchProducts;
   List<String> searchList = [
     "Keyboard",
     "logitech 650",
     "Gaming mouse",
     "Keychron K8 Pro"
   ];
+  @override
+  void initState() {
+    super.initState();
+    _fetchProducts = context.read<ProductsManager>().fetchProducts();
+    // var listProducts =
+    //     context.read<ProductsManager>().getListProductsByType('Headphone');
+    // print(listProducts);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,47 +48,70 @@ class _SearchScreenState extends State<SearchScreen> {
         backgroundColor: grey,
         elevation: 0,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.only(top: 20.0),
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  children: const [
-                    Text(
-                      'Recent search',
-                      style: TextStyle(
-                          fontFamily: 'SFCompactRounded',
-                          color: black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                    Spacer(),
-                    Text(
-                      'See all',
-                      style: TextStyle(
-                        fontFamily: 'SFCompactRounded',
-                        color: primaryCorlor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .8,
-                width: MediaQuery.of(context).size.width,
-                child: searchListView(searchList),
-              ),
-            ],
-          ),
-          // builder: ((context, value, child) => Text(value)),
-        ),
-        // child:
+
+      
+      //Recent
+      // body: Container(
+      //   height: MediaQuery.of(context).size.height,
+      //   width: MediaQuery.of(context).size.width,
+      //   padding: const EdgeInsets.only(top: 20.0),
+      //   child: Center(
+      //     child: Column(
+      //       children: [
+      //         Padding(
+      //           padding: const EdgeInsets.symmetric(horizontal: 15),
+      //           child: Row(
+      //             children: const [
+      //               Text(
+      //                 'Recent search',
+      //                 style: TextStyle(
+      //                     fontFamily: 'SFCompactRounded',
+      //                     color: black,
+      //                     fontWeight: FontWeight.bold,
+      //                     fontSize: 16),
+      //               ),
+      //               Spacer(),
+      //               Text(
+      //                 'See all',
+      //                 style: TextStyle(
+      //                   fontFamily: 'SFCompactRounded',
+      //                   color: primaryCorlor,
+      //                   fontSize: 16,
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         ),
+      //         SizedBox(
+      //           height: MediaQuery.of(context).size.height * .8,
+      //           width: MediaQuery.of(context).size.width,
+      //           child: searchListView(searchList),
+      //         ),
+      //       ],
+      //     ),
+      //     // builder: ((context, value, child) => Text(value)),
+      //   ),
+      //   // child:
+      // ),
+      body: FutureBuilder(
+          future: _fetchProducts,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return ValueListenableBuilder(
+                  valueListenable: search,
+                  builder: (context, searchText, child) {
+                    if (search.value != '') {
+                      return SearchResult(searchText);
+                    } else {
+                      return SearchRecent();
+                    }
+                  });
+              // return const AllProductGrid();
+              }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
       ),
     );
   }
@@ -115,7 +149,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget iconSearch() {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        SearchResult(search.value);
+      },
       icon: const Icon(Icons.search_rounded),
       color: primaryCorlor,
     );
