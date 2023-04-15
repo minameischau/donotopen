@@ -26,11 +26,15 @@ class HomeProductGridTile extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 20, bottom: 20),
+            margin: const EdgeInsets.only(left: 20, bottom: 20),
             height: 120,
             width: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius:
+                  const BorderRadius.horizontal(left: Radius.circular(10)),
+
+              // borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: secondCorlor, width: 1),
               image: DecorationImage(
                   image: NetworkImage(product.imageUrl), fit: BoxFit.cover),
             ),
@@ -67,7 +71,6 @@ class HomeProductGridTile extends StatelessWidget {
                   //Ten
                   BigText(
                     text: product.title,
-                    size: 18,
                   ),
                   SizedBox(
                     height: 6,
